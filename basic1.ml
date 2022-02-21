@@ -17,6 +17,7 @@ let sample_data1 = seiseki ("himiko","90") = "himikoさんの成績は90です"
 
 
 (*レコード ⇨ 組の中のそれぞれの値にデータ名を定義する。*)
+(*レコードの形式を以下のように取り決めを行い、外部からデータの中身の作成を行う*)
 
 type list = {
     food : string;
@@ -25,3 +26,4 @@ type list = {
 }
 
 let data1 = {food ="apple"; time = 12; place = "japan"}
+
