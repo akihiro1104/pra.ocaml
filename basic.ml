@@ -3,6 +3,8 @@
 (* 条件分岐先での計算やデータ型など、真偽の両方でデータの統一が必須になる ⇨ 真（浮動小数） 偽（不動小数点）*)
 (* 条件分岐の条件を必ず比較してそれぞれの条件の作成を行う。*)
 
+(*基本的な文法（複数個のデータを使用した）の総集。*)
+
 let sample x =
     if x <= 50 then "right" else "wrong"
 
@@ -28,3 +30,4 @@ let rec test list = match list with
 let sample_data1 = test [] = 0
 let sample_data2 = test [1; 2; 3;] = 3
 let sample_data3 = test [1; 2; 3; 4] = 4
+
