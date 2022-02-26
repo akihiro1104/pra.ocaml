@@ -37,7 +37,52 @@ let rec ins_sort list = match list with
  [] -> []
  | first :: rest -> insert first (ins_sort rest)
 
-
  let test1 = ins_sort [9;7;4;5;8]
+
+
+
+(*スコープ変数⇨範囲を指定し、一時的に使用する変数の作成が可能となっている。*)
+
+let rec part list = match list with
+    [] -> 0
+    | first :: rest -> let x = part rest in
+        if first mod 2 = 0 then x + 1 else x
+
+
+let test1 = part [2;3;4;5] = 2
+let test2 = part [2;4;6;8;10] = 5
+let test3 = part [1;3;5;5;7;9] = 0
+
+
+(*二つのリストをくっつける*)
+
+let rec append list1 list2 = match list1 with
+    [] -> list2
+    | first :: rest -> first ::append rest list2
+
+let test1 = append [] [] = []
+let test2 = append [1;2] [] = [1;2]
+let test3 = append [] [1;2] = [1;2]
+let test4 = append [1;2] [3;4] = [1;2;3;4]
+
+
+
+(*二つのリストをくっつけて、昇順に並び替え*)
+
+let rec merge list1 list2 = match (list1,list2) with
+    ([],[]) -> []
+    | ([],first2 :: rest2) -> list2
+    | (first1 :: rest1, []) -> list1 
+    | (first1 :: rest1, first2 :: rest2) -> 
+        if first1 < first2
+            then first1 :: merge rest1 list2
+            else first2 :: merge list1 rest2 
+
+let test1 = merge [] [] = []
+let test2 = merge [1;2] [] = [1;2]
+let test3 = merge [] [1;2] = [1;2]
+let test4 = merge [3;7] [1;9] = [1;3;7;9]
+
+
 
 
