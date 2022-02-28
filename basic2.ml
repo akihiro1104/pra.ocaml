@@ -68,6 +68,7 @@ let test4 = append [1;2] [3;4] = [1;2;3;4]
 
 
 (*二つのリストをくっつけて、昇順に並び替え*)
+(*引数を二つ受け取り、一つとして見なし扱う方法がまだ不十分*)
 
 let rec merge list1 list2 = match (list1,list2) with
     ([],[]) -> []
