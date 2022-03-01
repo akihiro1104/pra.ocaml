@@ -378,6 +378,7 @@ let test1 = get_ekikan_kyori "茗荷谷" "新大塚" global_ekikan_list = 1.2
 let test2 = get_ekikan_kyori "新大塚" "茗荷谷" global_ekikan_list = 1.2
 let test3 = get_ekikan_kyori "茗荷谷" "代々木上原" global_ekikan_list = infinity
 
+(*複数個のデータを扱う時の事例の学習が念入りに必要*)
 
 
 
