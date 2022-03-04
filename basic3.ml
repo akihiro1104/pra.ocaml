@@ -29,6 +29,47 @@ let test_power4 = power 5 2 = 25
 
 
 
+(*復習⇨関数のネスト（リスト使用とリスト不使用）*)
+
+
+(*複数のリストが存在している時は、複数のリストを一つとして扱う*) 
+(*データを取り出すときに、リストなどの情報追加を行わなずまとめるのは（）を使用する*)
+(*関数をネストするときは、データ形式を全て統一が必要。リストならリストで、文字列なら文字列で統一が必要*)
+(*ネスト時には、第一引数も第二引数も統一が必要*)
+
+let rec again_pra x list = match list with
+    [] -> []
+    | first :: rest -> ( x :: first )  :: again_pra x rest
+
+
+let test1 = again_pra 1 [] = []
+let test2 = again_pra 1 [[1]] = [[1;1]]
+let test3 = again_pra 1 [[2];[3]] = [[1;2];[1;3]]
+
+
+let rec again_main list = match list with
+    [] -> []
+    | first :: rest -> [first] ::  again_pra first (again_main rest)
+
+
+let test1_1 = again_main [1;2;3;4] = [[1]; [1; 2]; [1; 2; 3]; [1; 2; 3; 4]]
+
+
+
+
+(*練習*)
+
+let rec pra_string s list = match list with
+    [] -> []
+    | first :: rest -> ( first ^ s )  :: pra_string s rest
+
+
+let test1_1 = pra_string "s" ["test";"apple"] =  ["tests"; "apples"]
+let test1_2 = pra_string "s" ["apple";"banana";"meron"] = ["apples"; "bananas"; "merons"]
+
+let rec pra_main1 list = match list with
+    [] -> []
+    | first :: rest -> first :: pra_string first (pra_main1 rest)
 
 
 
