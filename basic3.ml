@@ -57,20 +57,6 @@ let test1_1 = again_main [1;2;3;4] = [[1]; [1; 2]; [1; 2; 3]; [1; 2; 3; 4]]
 
 
 
-(*練習*)
-
-let rec pra_string s list = match list with
-    [] -> []
-    | first :: rest -> ( first ^ s )  :: pra_string s rest
-
-
-let test1_1 = pra_string "s" ["test";"apple"] =  ["tests"; "apples"]
-let test1_2 = pra_string "s" ["apple";"banana";"meron"] = ["apples"; "bananas"; "merons"]
-
-let rec pra_main1 list = match list with
-    [] -> []
-    | first :: rest -> first :: pra_string first (pra_main1 rest)
-
 
 
 
