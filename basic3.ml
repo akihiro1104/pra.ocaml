@@ -57,6 +57,29 @@ let test1_1 = again_main [1;2;3;4] = [[1]; [1; 2]; [1; 2; 3]; [1; 2; 3; 4]]
 
 
 
+(*整列アルゴリズム*)
+
+let rec insert x list = match list with
+    [] -> [x]
+    | first :: rest -> if first > x then x :: first :: rest else first :: insert x rest
+
+let test1_1 = insert 5 [] = [5]
+let test1_2 = insert 5 [1;2;3;4] = [1;2;3;4;5]
 
 
+let rec ins_sort list = match list with
+    [] -> []
+    | first :: rest -> insert first (ins_sort rest)
 
+
+let test1_1 = ins_sort [5;6;9;8;7]
+
+
+(*最小値をリストの中から取り出す。*)
+
+let rec mini list = match list with
+    [] -> max_int
+    | first :: rest -> if first <= mini rest then first else mini rest
+
+
+let test1_1 = mini [8;7;6;5;4;3;2;1;2;3;4;5;6;7;8;8;7;6;7] = 1
