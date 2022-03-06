@@ -76,10 +76,13 @@ let test1_1 = ins_sort [5;6;9;8;7]
 
 
 (*最小値をリストの中から取り出す。*)
+(*スコープ変数の定義 ⇨ 関数が8割以上書き上がり、最低限のテストなどが終了した後にスコープ変数を定めるのがフィットしている。*)
+(*パターンマッチによるスコープ変数定義も可能だが、今はスルー*)
 
 let rec mini list = match list with
     [] -> max_int
-    | first :: rest -> if first <= mini rest then first else mini rest
+    | first :: rest -> let x = mini rest in
+         if first <= x then first else x
 
 
 let test1_1 = mini [8;7;6;5;4;3;2;1;2;3;4;5;6;7;8;8;7;6;7] = 1
