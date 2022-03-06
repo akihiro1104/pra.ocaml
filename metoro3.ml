@@ -351,35 +351,3 @@ let global_ekikan_list = [
 
 
 
-
-(*駅名をローマ字で受け取り、作成済みリストを照合して漢字で返す。*)
-
-let rec romaji_to_kanji romaji global_ekimei_list = match global_ekimei_list with
-  [] -> ""
-  | { kanji = k; kana = ka; romaji = r; shozoku = s} :: rest ->      (*ステップ① リスト内の情報を引き出す*)
-    if r = romaji then k else romaji_to_kanji romaji rest            (*ステップ② 受け取ったローマ字とリスト内の情報を確かめ、真なら漢字で駅名を、偽なら再帰*)
-
-
-let metoro_test1 = romaji_to_kanji "kouga" global_ekimei_list = ""
-let metoro_test2 = romaji_to_kanji "ginza" global_ekimei_list = "銀座"
-let metoro_test3 = romaji_to_kanji "hiro" global_ekimei_list = "広尾"
-
-
-
-(*駅名を漢字でふたつ受け取ったら、二つの受け取った二つの距離を返す。*)
-(*情報が合致しない場合には、infinityを返す。*)
-
-let rec get_ekikan_kyori name1 name2 global_ekikan = match global_ekikan with
-  [] -> infinity
-    | {kiten = k; shuten = s; keiyu = ke; kyori = ky; jikan = j;} :: rest ->                                              (*ステップ①リストの情報を個別化*)
-      if (k = name1 && s = name2) or (k = name2 && s = name1) then ky else get_ekikan_kyori name1 name2 global_ekikan     (*name1,name2の引数をリストの情報と合致させる*)
-
-let test1 = get_ekikan_kyori "茗荷谷" "新大塚" global_ekikan_list = 1.2
-let test2 = get_ekikan_kyori "新大塚" "茗荷谷" global_ekikan_list = 1.2
-let test3 = get_ekikan_kyori "茗荷谷" "代々木上原" global_ekikan_list = infinity
-
-(*複数個のデータを扱う時の事例の学習が念入りに必要*)
-(*ネスト時のデータ型の設定形式が不明*)
-
-
-
