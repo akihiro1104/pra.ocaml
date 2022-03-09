@@ -33,11 +33,12 @@ let sample_data3 = test [1; 2; 3; 4] = 4
 
 (*練習*)
 (*returnのデータ形式の統一が必ず必要*)
+(*一つの条件に＆＆などを使用し複数の条件を設定することが可能*)
 
 let stock vix = 
     if vix = 0 then "問題なし" else 
-        if vix <= 30 then "要注意" else "見直しが必要"
+        if vix <= 30 && vix <= 25 then "要注意" else "見直しが必要"
 
 let test1_1  = stock 0 = "問題なし"
-let test1_2  = stock 28 = "要注意"
+let test1_2  = stock 24 = "要注意"
 let test1_3  = stock 35 = "見直しが必要"
