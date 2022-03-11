@@ -20,7 +20,7 @@ let sample2 x =
 
 let test1 = sample2 10 = "適正価格"
 let test2 = sample2 50 = "高価格"
-let test3 = sample2 90 = "高ba価格"
+let test3 = sample2 90 = "標準価格"
 
 let rec test list = match list with
     [] -> 0
