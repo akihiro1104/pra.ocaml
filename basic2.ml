@@ -1,4 +1,15 @@
+(*パターンマッチを使用する場合には、パターン変数が異なる必要がある。*)
 (*以下の関数は、パーツ*)
+
+(*レコードのデータ形式確定方法とデータ出力方法について*)
+
+type food = {
+    name : string;
+    many : int;
+    where : string;
+}
+
+let test = { name = "apple"; many = 10; where = "japan" }
 
 let rec add_to_each x list = match list with 
     [] -> []
