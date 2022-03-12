@@ -11,6 +11,7 @@ type food = {
 
 let test = { name = "apple"; many = 10; where = "japan" }
 
+
 let rec add_to_each x list = match list with 
     [] -> []
     | first :: rest -> (x :: first) :: add_to_each x rest
@@ -112,6 +113,19 @@ let test3 = equal_length [] [2] = false
 let test4 = equal_length [1;2] [3;4] = true
 let test5 = equal_length [1;2;3] [4;5] = false
 let test6 = equal_length [1;2] [3;4;5] = false
+
+
+(*この部分で、想定されるスタートの想定と再帰の終了を想定した組み込みなどが求められる*)
+
+let rec sarch0 list = match list with
+    [] -> false
+    | first :: rest -> if first = 0 then true else sarch0 rest
+
+
+let test1_1 = sarch0 [] = false 
+let test2_2 = sarch0 [1;2] = false
+let test3_3 = sarch0 [0;1;3] = true
+let test4_4 = sarch0 [1;0;2;3] = true
         
         
 
