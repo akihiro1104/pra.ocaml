@@ -257,3 +257,6 @@ let test4 = seiretsu ekimei_list = [
 {kanji="本郷三丁目"; kana="ほんごうさんちょうめ"; romaji="hongosanchome"; shozoku="丸ノ内線"}; 
 {kanji="茗荷谷"; kana="みょうがだに"; romaji="myogadani"; shozoku="丸ノ内線"} 
 ] 
+
+
+
