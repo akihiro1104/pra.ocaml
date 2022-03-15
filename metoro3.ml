@@ -357,9 +357,20 @@ let rec pick_num list number = match list with
     if j = number then 1 + pick_num rest number else pick_num rest number 
 
 
-
-
-
 let test_1 = pick_num global_ekikan_list 2
 let test_2 = pick_num global_ekikan_list 3
 let test_3 = pick_num global_ekikan_list 1
+
+
+(*文字列の吐き出し*)
+
+let rec pick_num list number = match list with
+  [] -> []
+  | { kiten = ki ; shuten = sh ; keiyu = ke ; kyori = ky ; jikan = ji ;} :: rest ->
+    if ji = number then ["起点は" ^ ki ^ "で、終点は" ^ sh ^" です。"] :: pick_num rest number else pick_num rest number 
+
+  
+let test_1 = pick_num global_ekikan_list 2
+let test_2 = pick_num global_ekikan_list 3
+let test_3 = pick_num global_ekikan_list 1
+
