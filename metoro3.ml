@@ -367,10 +367,22 @@ let test_3 = pick_num global_ekikan_list 1
 let rec pick_num list number = match list with
   [] -> []
   | { kiten = ki ; shuten = sh ; keiyu = ke ; kyori = ky ; jikan = ji ;} :: rest ->
-    if ji = number then ["起点は" ^ ki ^ "で、終点は" ^ sh ^" です。"] :: pick_num rest number else pick_num rest number 
+    if ji = number then ["起点は" ^ ki ^ "で、終点は" ^ sh ^"です."] :: pick_num rest number else pick_num rest number 
 
   
 let test_1 = pick_num global_ekikan_list 2
 let test_2 = pick_num global_ekikan_list 3
 let test_3 = pick_num global_ekikan_list 1
+
+(*関数の一般化とMAP*)
+
+let rec map_sqrt list = match list with
+  [] -> []
+  | first :: rest -> sqrt first :: map_sqrt rest
+
+let test1_1 = map_sqrt [4.0;9.0]
+
+
+
+  
 
