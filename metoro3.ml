@@ -382,7 +382,9 @@ let rec map_sqrt list = match list with
 
 let test1_1 = map_sqrt [4.0;9.0]
 
-
+let rec practice_try list = match list with
+  [] -> []
+  | first :: rest -> pick_num first :: practice_try rest
 
   
 
