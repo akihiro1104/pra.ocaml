@@ -247,7 +247,7 @@ let rec ekimei_insert lst ekimei0 = match lst with
     [] -> [] 
   | first :: rest -> ekimei_insert (seiretsu rest) first 
  
-(* テスト *) 
+(* テスト*) 
 let test3 = seiretsu [] = [] 
 let test4 = seiretsu ekimei_list = [ 
 {kanji="池袋"; kana="いけぶくろ"; romaji="ikebukuro"; shozoku="丸ノ内線"}; 
@@ -257,6 +257,5 @@ let test4 = seiretsu ekimei_list = [
 {kanji="本郷三丁目"; kana="ほんごうさんちょうめ"; romaji="hongosanchome"; shozoku="丸ノ内線"}; 
 {kanji="茗荷谷"; kana="みょうがだに"; romaji="myogadani"; shozoku="丸ノ内線"} 
 ] 
-
 
 
