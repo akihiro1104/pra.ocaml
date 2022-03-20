@@ -438,6 +438,15 @@ let rest3_1 = ekimei_syozoku "千代田線" global_ekimei_list
 let rest3_2 = ekimei_syozoku "東西線" global_ekimei_list
 
 
+let rec map_picup_someting list pic_name x = match list with
+    [] -> []
+    | first :: rest -> x first pic_name :: map_picup_someting pic_name rest
+
+
+let test4_1 = map_picup_someting global_ekimei_list "千代田線" ekimei_syozoku
+
+
+
 
 
 
