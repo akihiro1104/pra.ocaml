@@ -398,6 +398,8 @@ let sample1_1 = hyouka test_data1
 
 
 
+(*関数の一般化*)
+
 let rec map_sqrt list = match list with
     [] -> []
     | first :: rest -> sqrt first :: map_sqrt rest
@@ -405,6 +407,45 @@ let rec map_sqrt list = match list with
 
 let test1_1 = map_sqrt [ 1.0; 4.0 ]
 let test1_2 = map_sqrt [ 9.0 ; 36.0]
+
+
+let rec map_hyouka list = match list with
+    [] -> []
+    | first :: rest -> hyouka first :: map_hyouka rest
+
+let test2_1 = test_data1
+
+
+(*上記の二つの関数を一般化し一つにまとめたものが以下の関数になる*)
+
+let rec map f list = match list with
+    [] -> []
+    | first :: rest -> f first :: map f rest
+
+
+
+
+(*関数一般化の練習*)
+
+let rec ekimei_syozoku shozpku_name list = match list with
+    [] -> []
+    | {kanji =kj; kana = kn; romaji = rm; shozoku = sz;} :: rest ->
+        if sz = shozpku_name then [ kj ^ "で、所属は" ^ sz ^ "です"] :: ekimei_syozoku shozpku_name rest else ekimei_syozoku shozpku_name rest
+        
+
+
+let rest3_1 = ekimei_syozoku "千代田線" global_ekimei_list
+let rest3_2 = ekimei_syozoku "東西線" global_ekimei_list
+
+
+
+
+
+
+
+
+
+
 
 
 
