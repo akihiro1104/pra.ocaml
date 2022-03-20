@@ -373,26 +373,72 @@ let rec pick_num list number = match list with
   | { kiten = ki ; shuten = sh ; keiyu = ke ; kyori = ky ; jikan = ji ;} :: rest -> 
     if ji = number then ["起点は" ^ ki ^ "で、終点は" ^ sh ^"です."] :: pick_num rest number else pick_num rest number 
 
-  
-let test_1 = pick_num global_ekikan_list 2
-let test_2 = pick_num global_ekikan_list 3
-let test_3 = pick_num global_ekikan_list 1
-
-
-
 (*関数の一般化とMAP*)
+(*# use "Generalisation_function.ml" ;;*)
 
-let rec map_hyouka list = match list with
+type gakusei_t = {
+    namae : string; (*名前*)
+    tensuu : int;   (*点数*)
+    seiseki : string; (*点数*)
+}
+
+let test_data1 = {namae ="asai"; tensuu =90; seiseki ="a"}
+let test_data2 = {namae ="asai"; tensuu =67; seiseki ="b"}
+
+
+let hyouka gakusei = match gakusei with
+    {namae =n; tensuu =t; seiseki = s; } -> 
+        {namae =n; 
+        tensuu =t; 
+        seiseki = if t >= 80 then "a"
+                  else if t >= 70 then "b"
+                  else if t >= 60 then "c" else "d"  }
+
+let sample1_1 = hyouka test_data1
+
+
+
+let rec map_sqrt list = match list with
     [] -> []
-    | first :: rest -> sqrt first :: map_hyouka rest
+    | first :: rest -> sqrt first :: map_sqrt rest
 
 
-let test1_1 = map_hyouka [2.0;4.0]
-let test1_2 = map_hyouka [3.0;5.0]
-let test1_3 = map_hyouka [4.0;9.0]
+let test1_1 = map_sqrt [ 1.0; 4.0 ]
+let test1_2 = map_sqrt [ 9.0 ; 36.0]
 
 
-let rec map f list = match list with
-    [] -> []
-    | first :: rest -> f first :: map f rest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
