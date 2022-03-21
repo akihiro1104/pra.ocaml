@@ -424,26 +424,18 @@ let rec map f list = match list with
 
 
 
-
-(*関数一般化の練習*)
-
-let rec ekimei_syozoku shozpku_name list = match list with
-    [] -> []
-    | {kanji =kj; kana = kn; romaji = rm; shozoku = sz;} :: rest ->
-        if sz = shozpku_name then [ kj ^ "で、所属は" ^ sz ^ "です"] :: ekimei_syozoku shozpku_name rest else ekimei_syozoku shozpku_name rest
-        
+let rec length list = match list with
+    [] -> 0
+    | first :: rest -> 1 + length rest
 
 
-let rest3_1 = ekimei_syozoku "千代田線" global_ekimei_list
-let rest3_2 = ekimei_syozoku "東西線" global_ekimei_list
+let test2_1 = length []
+let test2_2 = length [1;2;3;4;5]
+let rest2_3 = length [0;0;0;0]
 
 
-let rec map_picup_someting list pic_name x = match list with
-    [] -> []
-    | first :: rest -> x first pic_name :: map_picup_someting pic_name rest
 
 
-let test4_1 = map_picup_someting global_ekimei_list "千代田線" ekimei_syozoku
 
 
 
