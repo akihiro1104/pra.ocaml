@@ -1,5 +1,7 @@
 (*条件分岐*)
 
+
+
 (*視力を入力して各数値に対してAからDまでのランクを示す*)
 
 let eye_power x =
@@ -13,6 +15,15 @@ let test1_2 = eye_power 1.3 = "A"
 let test1_3 = eye_power 0.8 = "B"
 let test1_4 = eye_power 0.4 = "C"
 let test1_5 = eye_power 0.01 = "D"
+
+(*練習*)
+
+let pra_1 x =
+    if x <= 10 then x + 20 else x - 20
+
+
+let pra = pra_1 90 = 70
+let pra = pra_1 100 = 80
 
 
 
