@@ -13,3 +13,22 @@ let test1_2 = eye_power 1.3 = "A"
 let test1_3 = eye_power 0.8 = "B"
 let test1_4 = eye_power 0.4 = "C"
 let test1_5 = eye_power 0.01 = "D"
+
+
+
+ (*倫理演算子の練習*)
+
+ let pra_and x = 
+    if x <= 30  && x >= 10 then "a" else "b" 
+
+
+let test2_1 = pra_and 30 = "a"
+let test2_2 = pra_and 20 = "a"
+let test2_3 = pra_and 50 = "b"
+
+
+let pra_or x = 
+    if x >= 10 || x >= 30 then "a" else "b"
+
+let test3_1 = pra_or 20 = "a"
+let test3_2 = pra_or 1 =  "b"
