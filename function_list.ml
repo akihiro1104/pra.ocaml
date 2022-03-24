@@ -30,9 +30,16 @@ let rec filter p list = match list with
 
 
 
-(*テストコード*)
+let rec sum list = match list with
+    [] -> 0
+    | first :: rest -> first + sum rest
 
-let test2_1 = filter filter_positive 
+
+let rec length list = match list with
+    [] -> 0
+    | first :: rest -> 1 + length rest
+
+
 
 
 
