@@ -5,17 +5,6 @@
 
 
 
-(*練習*)
-
-type about_blood = {
-  a_amount : int;   
-  b_amount : int;
-  c_amount : int;
-}
-
-1
-
-
 
 
 
