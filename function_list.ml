@@ -1,4 +1,5 @@
 (*条件を満たす要素を取り出す関数*)
+(*リストだけでなく、高階関数関連の理解が甘いく飛ばし飛ばしになっている。*)
 
 let is_mod3_1 n = n mod 3 = 1
 
@@ -35,9 +36,11 @@ let rec sum list = match list with
     | first :: rest -> first + sum rest
 
 
-let rec length list = match list with
-    [] -> 0
-    | first :: rest -> 1 + length rest
+
+
+
+
+
 
 
 
