@@ -25,3 +25,16 @@ let test2_1 = prefix [5;6;7;8;9]
 let test2_2 = prefix [1;2;3;4;5;6;7;8;9]
 
 
+(*リスト内から最小値を取り出し、吐き出す*)
+(*スコープ変数の実装は以下の通り*)
+
+let rec minimum list = match list with
+    [] -> max_int
+    | first :: rest -> let x = minimum rest in
+         if first <= x then first
+                       else x
+
+                                            
+let test3_1 = minimum [] 
+let test3_2 = minimum [9;8;7;6;1] = 1
+let test3_3 = minimum [237;84;3;21;28;79;3;2] = 2
