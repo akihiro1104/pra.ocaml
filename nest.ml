@@ -38,3 +38,13 @@ let rec minimum list = match list with
 let test3_1 = minimum [] 
 let test3_2 = minimum [9;8;7;6;1] = 1
 let test3_3 = minimum [237;84;3;21;28;79;3;2] = 2
+
+
+(*二つのリストを結合する*)
+
+let rec append list1 list2 = match list1 with
+    [] -> list2
+    | first :: rest -> first :: append rest list2
+
+
+let test4_1 = append [1;2;3;4;3] [6;7;8;9] = [1; 2; 3; 4; 3; 6; 7; 8; 9]
