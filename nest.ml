@@ -48,3 +48,20 @@ let rec append list1 list2 = match list1 with
 
 
 let test4_1 = append [1;2;3;4;3] [6;7;8;9] = [1; 2; 3; 4; 3; 6; 7; 8; 9]
+
+(*ふたつのリストを受け取り、昇降順にリストをマージする*)
+
+let rec merge list1 list2 = match (list1,list2) with
+    ([],[]) -> []
+    |( first1 :: rest1 , [] ) -> list1
+    |( [], first2 :: rest2) -> list2
+    |( first1 :: rest1 , first2 :: rest2) -> if first1 < first2 
+        then first1 :: merge rest1 list2  
+        else first2 :: merge list1 rest2
+
+let test5_1 = merge [] []  = []
+let test5_2 = merge [1;2] [] = [1;2]
+let test5_3 = merge [] [2;3] = [2;3]
+let test5_4 = merge [1;2] [3;4] = [1;2;3;4]
+
+
