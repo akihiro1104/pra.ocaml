@@ -192,7 +192,7 @@ let global_ekimei_list = [
 
 (*12.4 ダイクストラアルゴリズム*)
 
-
+ 
 
 
 
