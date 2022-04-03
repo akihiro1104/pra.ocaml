@@ -216,7 +216,7 @@ let test3 = shokika {namae="明治神宮前"; saitan_kyori=infinity; temae_list=
 
 
 (*駅名の重複の除法*)
-(*ソースコードそのものの理解ができていない。*)
+
 
 
 let seiretsu lst = 
