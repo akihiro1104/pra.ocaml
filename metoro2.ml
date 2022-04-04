@@ -15,6 +15,7 @@ let ekimei_list = [
 {kanji="御茶ノ水"; kana="おちゃのみず"; romaji="ochanomizu"; shozoku="丸ノ内線"} 
 ] 
 
+
 let global_ekimei_list = [ 
 {kanji="代々木上原"; kana="よよぎうえはら"; romaji="yoyogiuehara"; shozoku="千代田線"}; 
 {kanji="代々木公園"; kana="よよぎこうえん"; romaji="yoyogikouen"; shozoku="千代田線"}; 
@@ -216,18 +217,20 @@ let test3 = shokika {namae="明治神宮前"; saitan_kyori=infinity; temae_list=
 
 
 (*駅名の重複の除法*)
-
-
+(*いくつかの関数処理について疑問が残る*)
 
 let seiretsu lst = 
   let rec insert lst ({kanji=c;kana=k;romaji=r;shozoku=s} as eki) = match lst with
       [] -> [eki]
     | ({kanji=c1;kana=k1;romaji=r1;shozoku=s1} as eki1)::rest -> 
+
         if k1 > k then eki :: lst else eki1 :: insert rest eki
   in let rec eki_sort lst = match lst with
       [] -> []
     | first :: rest -> insert (eki_sort rest) first
+
   in let sorted_lst = eki_sort lst
+
   in let rec reduce lst = match lst with
       [] -> []
     | [x] -> [x]
