@@ -181,12 +181,12 @@ let global_ekikan_list = [
 
 
 
-let rec count_data station_data station_name about_eki = match station_data with
+let rec count_data station_data station_name = match station_data with
 [] -> 0
 | {kiten = ki; shuten = sh; keiyu = ke; kyori =ky; jikan = ji;} :: rest ->
-    if station_name = about_eki then 1 + count_data rest station_name about_eki
-                               else count_data rest station_name about_eki
+    if station_name = ke then 1 + count_data rest station_name
+                         else count_data rest station_name
 
 
-let test1_1 = count_data global_ekikan_list "丸ノ内線" "丸ノ内線"
+let test1_1 = count_data global_ekikan_list "丸ノ内線"
 
