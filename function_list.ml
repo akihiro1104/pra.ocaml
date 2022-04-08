@@ -180,6 +180,8 @@ let global_ekikan_list = [
 (*引数として、駅名のリストと摘出したいデータを入力して、一致するデータの数の吐き出しを行う*)
 (*データ名ごとに関数の作成を行いそれをMAP関数を使用して、引数として各関数、リスト、文字列で吐き出しを行いたいデータを確定する。*)
 
+
+(*経由の情報を引数として入力して、経由数を吐き出しを行う*)
 let rec count_data station_data station_name = match station_data with
 [] -> 0
 | {kiten = ki; shuten = sh; keiyu = ke; kyori =ky; jikan = ji;} :: rest ->
@@ -188,6 +190,16 @@ let rec count_data station_data station_name = match station_data with
 
 
 let test1_1 = count_data global_ekikan_list "丸ノ内線"
+let test1_2 = count_data global_ekikan_list "有楽町線"
+let test1_3 = count_data global_ekikan_list "東西線"
+
+
+
+
+
+
+
+
 
 (*関数の一般化とMAP*)
 
