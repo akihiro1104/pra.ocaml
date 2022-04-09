@@ -182,18 +182,28 @@ let global_ekikan_list = [
 
 
 (*経由の情報を引数として入力して、経由数を吐き出しを行う*)
-let rec count_data station_data station_name = match station_data with
+
+let rec kten_pic list kiten_name = match list with
+    [] -> ""
+    | {kiten = ki; shuten = sh; keiyu = ke; kyori =ky; jikan = ji;} :: rest ->
+        if kiten_name = ki then "終点は" ^ sh ^ "です。"
+                           else kten_pic rest kiten_name
+
+
+let test1_1 = kten_pic global_ekikan_list "平和台"
+let test1_2 = kten_pic global_ekikan_list "江戸川橋"
+
+
+
+let rec count_data1 station_data station_name = match station_data with
 [] -> 0
 | {kiten = ki; shuten = sh; keiyu = ke; kyori =ky; jikan = ji;} :: rest ->
-    if station_name = ke then 1 + count_data rest station_name
-                         else count_data rest station_name
+    if station_name = ki then 1 + count_data1 rest station_name
+                         else count_data1 rest station_name
 
 
-let test1_1 = count_data global_ekikan_list "丸ノ内線"
-let test1_2 = count_data global_ekikan_list "有楽町線"
-let test1_3 = count_data global_ekikan_list "東西線"
 
-
+let test2_1 = count_data1 global_ekikan_list "平和台"
 
 
 
