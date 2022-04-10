@@ -206,6 +206,15 @@ let test1_1 = shoute_pick global_ekikan_list "平和台"
 let test1_2 = shoute_pick global_ekikan_list "江戸川橋"
 
 
+(*PICk関連の関数のMAP化*)
+
+let rec map_pick  list name = match list with
+    [] -> ""
+    | first :: rest -> fun first name :: map_pick fun name rest
+
+
+let test1_1 = map_pick shoute_pick global_ekikan_list "平和台"
+
 
 
 
