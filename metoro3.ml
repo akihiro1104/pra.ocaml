@@ -325,7 +325,7 @@ let global_ekikan_list = [
 {kiten="高田馬場"; shuten="落合"; keiyu="東西線"; kyori=1.9; jikan=3}; 
 {kiten="落合"; shuten="中野"; keiyu="東西線"; kyori=2.0; jikan=3}; 
 {kiten="新木場"; shuten="辰巳"; keiyu="有楽町線"; kyori=1.5; jikan=2}; 
-{kiten="辰巳"; shuten="豊洲"; keiyu="有楽町線"; kyori=1.7; jikan=2}; 
+{kiten="辰巳"; shuten="豊洲"; keiyu="有楽町線"; kyori=1.7; jikaßßn=2}; 
 {kiten="豊洲"; shuten="月島"; keiyu="有楽町線"; kyori=1.4; jikan=2}; 
 {kiten="月島"; shuten="新富町"; keiyu="有楽町線"; kyori=1.3; jikan=2}; 
 {kiten="新富町"; shuten="銀座一丁目"; keiyu="有楽町線"; kyori=0.7; jikan=1}; 
@@ -349,42 +349,9 @@ let global_ekikan_list = [
 {kiten="営団成増"; shuten="和光市"; keiyu="有楽町線"; kyori=2.1; jikan=3}; 
 ] 
 
-(*一般化と高階関数*)
-
-let rec pick_num list number = match list with
-  [] -> 0
-  | { kiten = _ ; shuten = _ ; keiyu = _ ; kyori = _ ; jikan = j ;} :: rest ->
-    if j = number then 1 + pick_num rest number else pick_num rest number 
 
 
-let test_1 = pick_num global_ekikan_list 2
-let test_2 = pick_num global_ekikan_list 3
-let test_3 = pick_num global_ekikan_list 1
 
-
-(*文字列の吐き出し*)
-
-let rec pick_num list number = match list with
-  [] -> []
-  | { kiten = ki ; shuten = sh ; keiyu = ke ; kyori = ky ; jikan = ji ;} :: rest ->
-    if ji = number then ["起点は" ^ ki ^ "で、終点は" ^ sh ^"です."] :: pick_num rest number else pick_num rest number 
-
-  
-let test_1 = pick_num global_ekikan_list 2
-let test_2 = pick_num global_ekikan_list 3
-let test_3 = pick_num global_ekikan_list 1
-
-(*関数の一般化とMAP*)
-
-let rec map_sqrt list = match list with
-  [] -> []
-  | first :: rest -> sqrt first :: map_sqrt rest
-
-let test1_1 = map_sqrt [4.0;9.0]
-
-let rec practice_try list = match list with
-  [] -> []
-  | first :: rest -> pick_num first :: practice_try rest
 
   
 
