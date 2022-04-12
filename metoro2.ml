@@ -217,7 +217,7 @@ let test3 = shokika {namae="明治神宮前"; saitan_kyori=infinity; temae_list=
 
 
 (*駅名の重複の除法*)
-(*いくつかの関数処理について疑問が残る*)
+(*以下の関数がもう少し簡単になったもののデータが欲しい*)
 
 let seiretsu lst = 
   let rec insert lst ({kanji=c;kana=k;romaji=r;shozoku=s} as eki) = match lst with
