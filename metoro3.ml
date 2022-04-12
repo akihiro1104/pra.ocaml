@@ -353,5 +353,6 @@ let global_ekikan_list = [
 
 
 
+
   
 
