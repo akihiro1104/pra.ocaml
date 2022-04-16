@@ -1,27 +1,17 @@
-(*第三章 変数の定義*)
-
-(*変数定義*)
-
-let test1_1 = 10
+(*基本的なデータとして、実数、整数、真偽などがある*)
 
 
+(*変数の定義は以下の通り*)
 
-(*引数の指定を関数の後に行う（x）*)
-
-let test1_2 x = test1_1 + 50 + x
-
-
-(*関数のテスト*)
-let test_t_1_2 = test1_2 10 = 70
+let test = "test"
 
 
-(*小数点を用いた計算*)
+(*関数の定義も可能となっている。*)
 
-let float_1 = 1.5
+let function_test test_n = test_n + 50
 
-let test_float x = float_1 *. x 
+let test1 = function_test 50
 
-let test_1 = test_float 1.5 = 2.25
 
 
 
