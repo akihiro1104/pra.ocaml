@@ -52,3 +52,19 @@ let test1_4 = eye_power 0.4 = "C"
 let test1_5 = eye_power 0.01 = "D"
 
 
+
+(*パターンマッチ*)
+(*複数のデータを使用することができる*)
+
+
+let add pair = match pair with
+    (a,b) -> a + b 
+
+(*テストコード*)
+
+let test1 = add (10,9) = 19
+let test2 = add (10,7) = 17
+let test3 = add (10,90) = 100
+
+
+
