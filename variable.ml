@@ -68,3 +68,20 @@ let test3 = add (10,90) = 100
 
 
 
+(*レコード*)
+(*以下のように、データ型の構成が可能となっている。*)
+(*駅名と駅間などの練習問題に関してはクローン予定*)
+
+type gakusei_t ={
+    namae : string; (*名前*)
+    tensuu : int ; (*点数*)
+    seiseki : string; (*成績*)
+}
+
+(*データ構成を上記のように確定したら以下のように自分で指定して同じデータ構造で生成できる*)
+
+let test1 =  { namae = "aki"; tensuu = 90; seiseki = ""}
+let test2 =  { namae = "kimiko"; tensuu = 78; seiseki = ""}
+
+
+
