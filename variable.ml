@@ -82,6 +82,20 @@ type gakusei_t ={
 
 let test1 =  { namae = "aki"; tensuu = 90; seiseki = ""}
 let test2 =  { namae = "kimiko"; tensuu = 78; seiseki = ""}
+let test3 =  { namae = "takumi"; tensuu = 69; seiseki = ""}
 
 
+(*リスト処理について*) 
+(*リスト処理もパターンマッチのように個別に扱うことができる*)
+(*リストないの全ての処理などを行う際には再帰関数が用いられる*)
+(*複数のデータを受け取って、一つ一つのデータを個別でカウントなどを処理なども可能*)
+(*メトロ問題あり*)
+
+let rec contain_zero list = match list with
+    [] -> false
+    | first :: rest -> if first = 0 then true
+                                    else contain_zero rest
+
+ let test1 = contain_zero [1;2;3;4;0;98] = true                       
+ let test2 = contain_zero [1;2;3;4;5] = false
 
