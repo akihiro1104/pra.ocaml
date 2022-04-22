@@ -99,3 +99,28 @@ let rec contain_zero list = match list with
  let test1 = contain_zero [1;2;3;4;0;98] = true                       
  let test2 = contain_zero [1;2;3;4;5] = false
 
+(*再帰関数を使用したプログラミング*)
+
+(*練習問題*)
+let rec part n list = match list with
+    [] -> []
+    | first :: rest -> ( n :: first) :: part n rest 
+
+let test1 = part 1 [[2]]   
+let test2 = part 1 [[1];[2]]
+
+let rec main_part list = match list with
+    [] -> []
+    | first :: rest -> [first] :: part first (main_part rest)
+
+
+let test1_1 = main_part [1;2;3;4;5]
+let test1_2 = main_part [1;2;4;3]
+
+
+
+(*整列アルゴリズム（挿入法）の作成*)
+
+let rec insert n list = match list with
+     [] -> []
+     | first :: rest -> 
