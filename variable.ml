@@ -121,6 +121,28 @@ let test1_2 = main_part [1;2;4;3]
 
 (*整列アルゴリズム（挿入法）の作成*)
 
+(*以下の関数は、パーツとなっている。*)
 let rec insert n list = match list with
-     [] -> []
-     | first :: rest -> 
+     [] -> [n]
+     | first :: rest -> if first > n then n :: first :: rest
+                                     else first :: insert n rest
+
+
+                                    
+let test1_1 = insert 2 [1;3;4]
+let test1_2 = insert 3 [5]
+
+
+
+
+(*整列アルゴリズムのメインパートとなり、ネストしている。*)
+
+let rec main_insert list = match list with
+    [] -> []
+    | first :: rest -> insert first ( main_insert rest)
+
+
+let test2_1 = main_insert [9;8;7;6;3]
+let test2_2 = main_insert [1;9;2;8;3;7;4;8;5;6]
+
+
