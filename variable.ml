@@ -146,3 +146,21 @@ let test2_1 = main_insert [9;8;7;6;3]
 let test2_2 = main_insert [1;9;2;8;3;7;4;8;5;6]
 
 
+
+(*リストの中の最小値を求める。*)
+(*局所変数定義化*)
+
+let rec minimum list = match list with
+    [] -> max_int
+    | first :: rest -> let mini_rest = minimum rest in 
+        if first < mini_rest then first
+                             else mini_rest
+
+
+(*minimum関数のテストコード*)
+
+let test3_1 = minimum []
+let test3_2 = minimum [1;2]
+let test3_3 = minimum [3;2;1]
+let test3_4 = minimum [7;9;8;7;6]
+
