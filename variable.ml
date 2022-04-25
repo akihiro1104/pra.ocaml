@@ -164,3 +164,14 @@ let test3_2 = minimum [1;2]
 let test3_3 = minimum [3;2;1]
 let test3_4 = minimum [7;9;8;7;6]
 
+
+(*二つのリストを結合する関数*)
+
+let rec append list1 list2 = match list1 with
+    [] -> list2
+    | first :: rest -> first :: append rest list2
+
+let test4_1 = append [] [] = []
+let test4_2 = append [1;2] [] = [1;2]
+let test4_3 = append [] [1;2] = [1;2]
+let test4_4 = append [1;2] [3;4] = [1;2;3;4]
