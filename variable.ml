@@ -177,9 +177,20 @@ let test4_3 = append [] [1;2] = [1;2]
 let test4_4 = append [1;2] [3;4] = [1;2;3;4]
 
 (*ふたつのリストを昇降順で並び替え*)
+(*一部昇降順にならないので学び直しが必要*)
 
 let rec merge list1 list2 = match (list1,list2) with
     ([],[]) -> []
-    | ([)
+    | ([],first2 :: rest2) -> list2
+    | (first1 :: rest1 ,[]) -> list1
+    | ( first1 :: rest1 , first2 :: rest2 ) ->
+        if first1 < first2 
+             then first1 :: merge rest1 list2
+             else first2 :: merge list1 rest2
 
 
+let test1 = merge [] [] = []
+let test2 = merge [1;2] [] = [1;2]
+let test3 = merge [] [1;2] = [1;2]
+let test4 = merge [1;2] [3;4] = [1;2;3;4]
+let test5 = merge [3;2] [1;4] 
