@@ -189,7 +189,6 @@ let rec merge list1 list2 = match (list1,list2) with
              else first2 :: merge list1 rest2
 
 
-let test1 = merge [] [] = []
 let test2 = merge [1;2] [] = [1;2]
 let test3 = merge [] [1;2] = [1;2]
 let test4 = merge [1;2] [3;4] = [1;2;3;4]
