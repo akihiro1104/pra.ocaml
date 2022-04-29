@@ -193,3 +193,17 @@ let test2 = merge [1;2] [] = [1;2]
 let test3 = merge [] [1;2] = [1;2]
 let test4 = merge [1;2] [3;4] = [1;2;3;4]
 let test5 = merge [3;2] [1;4] 
+
+
+(*自然数と再帰*)
+
+(*階数を求める*)
+(*リストを使用しない再帰関数の作成になるので念入りに復習をが必要かもしれない。*)
+
+let rec fac n = 
+    if n = 0 then 1
+             else n * fac ( n - 1) 
+
+let test1 = fac 1 = 1
+let test2 = fac 2 = 2
+let test3 = fac 3 = 6
