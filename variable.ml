@@ -207,3 +207,14 @@ let rec fac n =
 let test1 = fac 1 = 1
 let test2 = fac 2 = 2
 let test3 = fac 3 = 6
+
+
+(*ベキ乗を求める関数の作成*)
+
+let rec power n1 n2  = 
+    if n2 = 1 then n1 else n1 * power n1 ( n2 - 1 )
+
+
+let test1 = power 3 2 
+let test2 = power 4 2 
+let test3 = power 5 2
