@@ -18,7 +18,7 @@ type ekikan_t = {
   jikan : int       (* 所要時間(分) *)
 }
 
-et global_ekimei_list = [ 
+let global_ekimei_list = [ 
 {kanji="代々木上原"; kana="よよぎうえはら"; romaji="yoyogiuehara"; shozoku="千代田線"}; 
 {kanji="代々木公園"; kana="よよぎこうえん"; romaji="yoyogikouen"; shozoku="千代田線"}; 
 {kanji="明治神宮前"; kana="めいじじんぐうまえ"; romaji="meijijinguumae"; shozoku="千代田線"}; 
@@ -360,3 +360,19 @@ let global_ekikan_list = [
 {kiten="営団赤塚"; shuten="営団成増"; keiyu="有楽町線"; kyori=1.5; jikan=2}; 
 {kiten="営団成増"; shuten="和光市"; keiyu="有楽町線"; kyori=2.1; jikan=3}; 
 ] 
+
+
+(*駅名（文字列）と駅名を受け取ったら、漢字で駅名を返す*)
+
+let rec romaji_to_kanji ekimei_en list = match list with
+  [] -> "存在しないです。"
+  | { kanji = k; kana = ka; romaji = ro; shozoku = sh; } :: rest ->
+    if ekimei_en = ro then k 
+                      else romaji_to_kanji ekimei_en rest
+
+
+let test1_1 = romaji_to_kanji "omotesandou" global_ekimei_list = "表参道"
+let test1_2 = romaji_to_kanji "kasumigaseki" global_ekimei_list = "霞ヶ関"
+
+
+
