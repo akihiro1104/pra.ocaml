@@ -376,18 +376,18 @@ let test1_2 = romaji_to_kanji "kasumigaseki" global_ekimei_list = "霞ヶ関"
 
 
 let rec get_ekikan_kyori eki_name1 eki_name2 list = match list with
-  [] -> infinity 
+  [] -> "そのような駅は存在していないです。"
   | { kiten = ki; shuten = sh; keiyu = ke; kyori = ky; jikan =ji;} :: rest ->
-    if eki_name1 = ki && eki_name2 = sh then ky
-                                        else if eki_name2 = ki && eki_name1 = sh then ky 
-                                                                                 else get_ekikan_kyori eki_name1 eki_name2 rest
+    if eki_name1 = ki && eki_name2 = sh then ki ^ "駅から" ^ sh ^ "駅までは" ^ ki ^ "kmです。"
+                                            else if eki_name2 = ki && eki_name1 = sh then ki ^ "駅から" ^ sh ^ "駅までは" ^ ki ^ "kmです。"
+                                                                                     else get_ekikan_kyori eki_name1 eki_name2 rest
 
 (*終点ベースの入力、起点ベースの入力の両方で距離の吐き出しが可能*)
-let test2_1 = get_ekikan_kyori "平和台" "営団赤塚" global_ekikan_list = 1.8
-let test2_2 = get_ekikan_kyori "営団赤塚" "平和台" global_ekikan_list = 1.8
-let test2_3 = get_ekikan_kyori "飯田橋" "江戸川橋" global_ekikan_list = 1.6
-let test2_4 = get_ekikan_kyori "江戸川橋" "飯田橋" global_ekikan_list = 1.6
-let test2_5 = get_ekikan_kyori "江戸川橋" "平和台" global_ekikan_list = infinity
+let test2_1 = get_ekikan_kyori "平和台" "営団赤塚" global_ekikan_list 
+let test2_2 = get_ekikan_kyori "営団赤塚" "平和台" global_ekikan_list 
+let test2_3 = get_ekikan_kyori "飯田橋" "江戸川橋" global_ekikan_list 
+let test2_4 = get_ekikan_kyori "江戸川橋" "飯田橋" global_ekikan_list 
+let test2_5 = get_ekikan_kyori "江戸川橋" "平和台" global_ekikan_list 
 
 
 
