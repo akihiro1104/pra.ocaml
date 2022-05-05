@@ -378,8 +378,8 @@ let test1_2 = romaji_to_kanji "kasumigaseki" global_ekimei_list = "霞ヶ関"
 let rec get_ekikan_kyori eki_name1 eki_name2 list = match list with
   [] -> "そのような駅は存在していないです。"
   | { kiten = ki; shuten = sh; keiyu = ke; kyori = ky; jikan =ji;} :: rest ->
-    if eki_name1 = ki && eki_name2 = sh then ki ^ "駅から" ^ sh ^ "駅までは" ^ ki ^ "kmです。"
-                                            else if eki_name2 = ki && eki_name1 = sh then ki ^ "駅から" ^ sh ^ "駅までは" ^ ki ^ "kmです。"
+    if eki_name1 = ki && eki_name2 = sh then ki ^ "駅から" ^ sh ^ "駅までは" ^ ky ^ "kmです。"
+                                            else if eki_name2 = ki && eki_name1 = sh then ki ^ "駅から" ^ sh ^ "駅までは" ^ ky ^ "kmです。"
                                                                                      else get_ekikan_kyori eki_name1 eki_name2 rest
 
 (*終点ベースの入力、起点ベースの入力の両方で距離の吐き出しが可能*)
