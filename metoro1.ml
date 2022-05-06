@@ -362,6 +362,7 @@ let global_ekikan_list = [
 ] 
 
 
+
 (*駅名（文字列）と駅名を受け取ったら、漢字で駅名を返す*)
 
 let rec romaji_to_kanji ekimei_en list = match list with
@@ -375,19 +376,48 @@ let test1_1 = romaji_to_kanji "omotesandou" global_ekimei_list = "表参道"
 let test1_2 = romaji_to_kanji "kasumigaseki" global_ekimei_list = "霞ヶ関"
 
 
+(*駅名リスト、駅名を二つ受け取り繋がっていたら距離を返す*)
 let rec get_ekikan_kyori eki_name1 eki_name2 list = match list with
-  [] -> "そのような駅は存在していないです。"
+  [] -> infinity 
   | { kiten = ki; shuten = sh; keiyu = ke; kyori = ky; jikan =ji;} :: rest ->
-    if eki_name1 = ki && eki_name2 = sh then ki ^ "駅から" ^ sh ^ "駅までは" ^ ky ^ "kmです。"
-                                            else if eki_name2 = ki && eki_name1 = sh then ki ^ "駅から" ^ sh ^ "駅までは" ^ ky ^ "kmです。"
-                                                                                     else get_ekikan_kyori eki_name1 eki_name2 rest
+    if eki_name1 = ki && eki_name2 = sh then ky
+                                        else if eki_name2 = ki && eki_name1 = sh then ky 
+                                                                                 else get_ekikan_kyori eki_name1 eki_name2 rest
 
 (*終点ベースの入力、起点ベースの入力の両方で距離の吐き出しが可能*)
-let test2_1 = get_ekikan_kyori "平和台" "営団赤塚" global_ekikan_list 
-let test2_2 = get_ekikan_kyori "営団赤塚" "平和台" global_ekikan_list 
-let test2_3 = get_ekikan_kyori "飯田橋" "江戸川橋" global_ekikan_list 
-let test2_4 = get_ekikan_kyori "江戸川橋" "飯田橋" global_ekikan_list 
-let test2_5 = get_ekikan_kyori "江戸川橋" "平和台" global_ekikan_list 
+let test2_1 = get_ekikan_kyori "平和台" "営団赤塚" global_ekikan_list = 1.8
+let test2_2 = get_ekikan_kyori "営団赤塚" "平和台" global_ekikan_list = 1.8
+let test2_3 = get_ekikan_kyori "飯田橋" "江戸川橋" global_ekikan_list = 1.6
+let test2_4 = get_ekikan_kyori "江戸川橋" "飯田橋" global_ekikan_list = 1.6
+let test2_5 = get_ekikan_kyori "江戸川橋" "平和台" global_ekikan_list = infinity
+
+
+
+(*上記の二つの関数を使用して、文字列に変化させる*)
+
+
+let kyori_wo_hyoji romaji1 romaji2 = 
+  let kanji1 = romaji_to_kanji romaji1 global_ekimei_list in 
+    if kanji1 = "" then romaji1 ^ " という駅は存在しません" 
+  else let kanji2 = romaji_to_kanji romaji2 global_ekimei_list in 
+        if kanji2 = "" then romaji2 ^ " という駅は存在しません" 
+       else let kyori = get_ekikan_kyori kanji1 kanji2 global_ekikan_list in 
+	      if kyori = infinity 
+	        then kanji1 ^ "と" ^ kanji2 ^ "はつながっていません" 
+	        else kanji1 ^ "から" ^ kanji2 ^ "までは " ^string_of_float kyori ^ " キロです" 
+ 
+(* テスト *) 
+let test1 = kyori_wo_hyoji "myougadani" "shinotsuka" 
+	    = "myougadani という駅は存在しません" 
+let test1 = kyori_wo_hyoji "myogadani" "shinotsuka" 
+	    = "茗荷谷から新大塚までは 1.2 キロです" 
+let test1 = kyori_wo_hyoji "myogadani" "ikebukuro" 
+	    = "茗荷谷と池袋はつながっていません" 
+let test1 = kyori_wo_hyoji "tokyo" "ootemachi" 
+	    = "ootemachi という駅は存在しません" 
+let test1 = kyori_wo_hyoji "tokyo" "otemachi" 
+	    = "東京から大手町までは 0.6 キロです" 
+
 
 
 
