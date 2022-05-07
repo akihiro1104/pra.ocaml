@@ -397,16 +397,17 @@ let test2_5 = get_ekikan_kyori "江戸川橋" "平和台" global_ekikan_list = i
 
 
 let kyori_wo_hyoji romaji1 romaji2 = 
-  let kanji1 = romaji_to_kanji romaji1 global_ekimei_list in 
+  let kanji1 = romaji_to_kanji romaji1 global_ekimei_list in  (*スコープ変数を使用して新たに変数の作成*) 
     if kanji1 = "" then romaji1 ^ " という駅は存在しません" 
-  else let kanji2 = romaji_to_kanji romaji2 global_ekimei_list in 
+    else let kanji2 = romaji_to_kanji romaji2 global_ekimei_list in (*スコープ変数を使用して新たに変数の作成*) 
         if kanji2 = "" then romaji2 ^ " という駅は存在しません" 
-       else let kyori = get_ekikan_kyori kanji1 kanji2 global_ekikan_list in 
+       else let kyori = get_ekikan_kyori kanji1 kanji2 global_ekikan_list in (*スコープ変数を使用して新たに変数の作成*) 
 	      if kyori = infinity 
 	        then kanji1 ^ "と" ^ kanji2 ^ "はつながっていません" 
 	        else kanji1 ^ "から" ^ kanji2 ^ "までは " ^string_of_float kyori ^ " キロです" 
  
-(* テスト *) 
+(* テスト *)
+
 let test1 = kyori_wo_hyoji "myougadani" "shinotsuka" 
 	    = "myougadani という駅は存在しません" 
 let test1 = kyori_wo_hyoji "myogadani" "shinotsuka" 
@@ -417,6 +418,8 @@ let test1 = kyori_wo_hyoji "tokyo" "ootemachi"
 	    = "ootemachi という駅は存在しません" 
 let test1 = kyori_wo_hyoji "tokyo" "otemachi" 
 	    = "東京から大手町までは 0.6 キロです" 
+
+
 
 
 
