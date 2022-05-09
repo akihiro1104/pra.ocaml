@@ -366,7 +366,7 @@ let global_ekikan_list = [
 (*駅名（文字列）と駅名を受け取ったら、漢字で駅名を返す*)
 
 let rec romaji_to_kanji ekimei_en list = match list with
-  [] -> "存在しないです。"
+  [] -> ""
   | { kanji = k; kana = ka; romaji = ro; shozoku = sh; } :: rest ->
     if ekimei_en = ro then k 
                       else romaji_to_kanji ekimei_en rest
@@ -409,13 +409,15 @@ let kyori_wo_hyoji romaji1 romaji2 =
 (* テスト *)
 
 let test1 = kyori_wo_hyoji "myougadani" "shinotsuka" 
-	    = "myougadani という駅は存在しません" 
+	    
 let test1 = kyori_wo_hyoji "myogadani" "shinotsuka" 
 	    = "茗荷谷から新大塚までは 1.2 キロです" 
+
 let test1 = kyori_wo_hyoji "myogadani" "ikebukuro" 
-	    = "茗荷谷と池袋はつながっていません" 
+	    = "茗荷谷と池袋はつながっていません"
+
 let test1 = kyori_wo_hyoji "tokyo" "ootemachi" 
-	    = "ootemachi という駅は存在しません" 
+	     
 let test1 = kyori_wo_hyoji "tokyo" "otemachi" 
 	    = "東京から大手町までは 0.6 キロです" 
 
