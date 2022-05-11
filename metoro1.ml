@@ -407,6 +407,7 @@ let rec kyori_wo_hyoji name1 name2 =
                                                                            else kanji1 ^ "から" ^ kanji2 ^ "までは " ^ string_of_float (get_ekikan_kyori kanji1 kanji2 global_ekikan_list)  ^ " キロです"
 
 
+
  
 (* テスト *)
 
