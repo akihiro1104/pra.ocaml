@@ -399,12 +399,11 @@ let test2_5 = get_ekikan_kyori "江戸川橋" "平和台" global_ekikan_list = i
 let rec kyori_wo_hyoji name1 name2 = 
   let kanji1 = romaji_to_kanji name1 global_ekimei_list in 
     if kanji1 = "" then name1 ^ " という駅は存在しません"
-    
-  else let kanji2 = romaji_to_kanji name2 global_ekimei_list in
-     if kanji2 = "" then name2 ^ " という駅は存在しません"
-   
-      else if get_ekikan_kyori kanji1 kanji2 global_ekikan_list = infinity then kanji1 ^ "と" ^ kanji2 ^ "はつながっていません"
-                                                                           else kanji1 ^ "から" ^ kanji2 ^ "までは " ^ string_of_float (get_ekikan_kyori kanji1 kanji2 global_ekikan_list)  ^ " キロです"
+                   else let kanji2 = romaji_to_kanji name2 global_ekimei_list in
+                    if kanji2 = "" then name2 ^ " という駅は存在しません"
+                                   else let kyori = get_ekikan_kyori kanji1 kanji2 global_ekikan_list in
+                                    if kyori = infinity then kanji1 ^ "と" ^ kanji2 ^ "はつながっていません"
+                                                        else kanji1 ^ "から" ^ kanji2 ^ "までは " ^ string_of_float (kyori)  ^ " キロです"
 
 
 
