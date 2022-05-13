@@ -217,4 +217,17 @@ let rec power n1 n2  =
 
 let test1 = power 3 2 
 let test2 = power 4 2 
-let test3 = power 5 2
+
+
+(*受け取った数を全て階乗化、冪乗にして足す*)
+
+let rec sum_of_square number =
+    if number = 0 then number
+                  else number * number + sum_of_square ( number - 1 )
+
+
+let test1 = sum_of_square 2 = 5
+let test2 = sum_of_square 4 = 30
+
+
+
