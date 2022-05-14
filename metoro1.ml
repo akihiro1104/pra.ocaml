@@ -427,7 +427,7 @@ let test1 = kyori_wo_hyoji "tokyo" "otemachi"
 
 
 
-
+(*ダイクストラ用のデータ型の作成を行う。*)
 
 
 
