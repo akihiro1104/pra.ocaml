@@ -441,6 +441,8 @@ type eki_t = {
 let make_eki_list {kanji=c; kana=k; romaji=r; shozoku=s} = {namae=c; saitan_kyori=infinity; temae_list=[]}
 
 
+(*eki_t型のリストと起点(漢字の文字列)を受け取ったら、指定するデータ型で返す*)
+
 
 
 
