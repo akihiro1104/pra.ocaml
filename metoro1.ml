@@ -441,7 +441,6 @@ type eki_t = {
 let make_eki_list {kanji=c; kana=k; romaji=r; shozoku=s} = {namae=c; saitan_kyori=infinity; temae_list=[]}
 
 
-
 (*eki_t型のリストと起点(漢字の文字列)を受け取ったら、指定するデータ型で返す*)
 (*期待されたデータ型を引数として受け取ったとき、変更したい部分を変更してリターンしてそれ以外のパターンはリターンをしない。*)
 (*ダイクストラ用のここまでのソースコードは、アウトラインは大方掴めているが、テストが未完了なのでテストを行う必要があり。*)
@@ -449,6 +448,7 @@ let make_eki_list {kanji=c; kana=k; romaji=r; shozoku=s} = {namae=c; saitan_kyor
 let shokika list1 list2 = 
   if list = {namae=c; saitan_kyori=infinity; temae_list=[]} then {namae=c; saitan_kyori=0; temae_list=[list]}
                                                             else {namae=c; saitan_kyori=infinity; temae_list=[]}
+
 
 
 
