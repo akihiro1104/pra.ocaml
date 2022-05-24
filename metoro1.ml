@@ -427,6 +427,9 @@ let test1 = kyori_wo_hyoji "tokyo" "otemachi"
 
 
 
+
+
+
 (*ダイクストラ用のデータ型の作成を行う。*)
 
 type eki_t = {
@@ -445,7 +448,7 @@ let make_eki_list {kanji=c; kana=k; romaji=r; shozoku=s} = {namae=c; saitan_kyor
 (*ダイクストラ用のここまでのソースコードは、アウトラインは大方掴めているが、テストが未完了なのでテストを行う必要があり。*)
 
 let shokika list1 list2 = 
-  if list = {namae=c; saitan_kyori=infinity; temae_list=[]} then {namae=c; saitan_kyori=0; temae_list=[list]}
+  if list1 = {namae=c; saitan_kyori=infinity; temae_list=[]} then {namae=c; saitan_kyori=0; temae_list=[list2]}
                                                             else {namae=c; saitan_kyori=infinity; temae_list=[]}
 
 
