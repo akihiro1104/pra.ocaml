@@ -451,7 +451,7 @@ let make_eki_list {kanji=c; kana=k; romaji=r; shozoku=s} = {namae=c; saitan_kyor
 
 let shokika list1 list2 = 
   if list1 = {namae=c; saitan_kyori=infinity; temae_list=[]} then {namae=c; saitan_kyori=0; temae_list=[list2]}
-                                                            else {namae=c; saitan_kyori=infinity; temae_list=[]}
+                                                             else {namae=c; saitan_kyori=infinity; temae_list=[]}
 
 
 
