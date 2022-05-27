@@ -432,28 +432,6 @@ let test1 = kyori_wo_hyoji "tokyo" "otemachi"
 
 (*ダイクストラ用のデータ型の作成を行う。*)
 
-type eki_t = {
-  ekimei : string;
-  saitan_kyori : float;
-  temae_list : string list  
-}
-
-(*ekimei_t型リストを受け取ったら、eki_tに変換する*)
-(*他のデータ型を違うデータ型に変化させる関数が以下のようになる。*)
-
-let make_eki_list {kanji=c; kana=k; romaji=r; shozoku=s} = {namae=c; saitan_kyori=infinity; temae_list=[]}
-
-
-
-(*eki_t型のリストと起点(漢字の文字列)を受け取ったら、指定するデータ型で返す*)
-(*期待されたデータ型を引数として受け取ったとき、変更したい部分を変更してリターンしてそれ以外のパターンはリターンをしない。*)
-(*ダイクストラ用のここまでのソースコードは、アウトラインは大方掴めているが、テストが未完了なのでテストを行う必要があり。*)
-
-let shokika list1 list2 = 
-  if list1 = {namae=c; saitan_kyori=infinity; temae_list=[]} then {namae=c; saitan_kyori=0; temae_list=[list2]}
-                                                             else {namae=c; saitan_kyori=infinity; temae_list=[]}
-
-
 
 
 
