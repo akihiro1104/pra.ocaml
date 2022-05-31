@@ -1,6 +1,8 @@
 (*リストの基本情報*)
 (*ダイクストラアルゴリズムを実装する時には、以下のリスト情報をベースに侵攻するのがよき*)
 
+(*データ型の指定と構成についてに*)
+
 (* 駅名の情報を格納するレコード型 *)
 type ekimei_t = {
   kanji : string;   (* 漢字の駅名 *)
@@ -364,6 +366,7 @@ let global_ekikan_list = [
 
 
 (*駅名（文字列）と駅名を受け取ったら、漢字で駅名を返す*)
+(*駅名を引数として投げて、引数として渡したリストからピックアップする関数*)
 
 let rec romaji_to_kanji ekimei_en list = match list with
   [] -> ""
@@ -377,6 +380,7 @@ let test1_2 = romaji_to_kanji "kasumigaseki" global_ekimei_list = "霞ヶ関"
 
 
 (*駅名リスト、駅名を二つ受け取り繋がっていたら距離を返す*)
+(リストから条件が真の場合に特定の情報の吐き出しを指定させる)
 let rec get_ekikan_kyori eki_name1 eki_name2 list = match list with
   [] -> infinity 
   | { kiten = ki; shuten = sh; keiyu = ke; kyori = ky; jikan =ji;} :: rest ->
@@ -395,6 +399,7 @@ let test2_5 = get_ekikan_kyori "江戸川橋" "平和台" global_ekikan_list = i
 
 (*上記の二つの関数を使用して、文字列に変化させる*)
 (*初回で作成時には、スコープ変数を使用せずに、書き進める*)
+(*理解が薄いためスクラッチで自分でもう一度回答を行う必要あり*)
 
 let rec kyori_wo_hyoji name1 name2 = 
   let kanji1 = romaji_to_kanji name1 global_ekimei_list in 
