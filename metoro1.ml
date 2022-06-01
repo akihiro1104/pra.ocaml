@@ -1,7 +1,7 @@
 (*リストの基本情報*)
 (*ダイクストラアルゴリズムを実装する時には、以下のリスト情報をベースに侵攻するのがよき*)
 
-(*データ型の指定と構成についてに*)
+(*データ型の指定と構成について*)
 
 (* 駅名の情報を格納するレコード型 *)
 type ekimei_t = {
@@ -370,7 +370,7 @@ let global_ekikan_list = [
 
 let rec romaji_to_kanji ekimei_en list = match list with
   [] -> ""
-  | { kanji = k; kana = ka; romaji = ro; shozoku = sh; } :: rest ->
+  | { kanji = k; kana = ka; romaji = ro; shozoku = sh; } :: rest -> (*関数内で、データ型の読み込みの定義がこの行で行われている。*)
     if ekimei_en = ro then k 
                       else romaji_to_kanji ekimei_en rest
 
@@ -398,7 +398,7 @@ let test2_5 = get_ekikan_kyori "江戸川橋" "平和台" global_ekikan_list = i
 
 
 (*上記の二つの関数を使用して、文字列に変化させる*)
-(*初回で作成時には、スコープ変数を使用せずに、書き進める*)
+(*１回目にスクラッチで書いて、起動確認したらスコープ変数を使用する。*)
 (*理解が薄いためスクラッチで自分でもう一度回答を行う必要あり*)
 
 let rec kyori_wo_hyoji name1 name2 = 
