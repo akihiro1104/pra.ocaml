@@ -401,6 +401,7 @@ let test2_5 = get_ekikan_kyori "江戸川橋" "平和台" global_ekikan_list = i
 (*１回目にスクラッチで書いて、起動確認したらスコープ変数を使用する。*)
 (*理解が薄いためスクラッチで自分でもう一度回答を行う必要あり*)
 
+
 let rec kyori_wo_hyoji name1 name2 = 
   let kanji1 = romaji_to_kanji name1 global_ekimei_list in 
     if kanji1 = "" then name1 ^ " という駅は存在しません"
