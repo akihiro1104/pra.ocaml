@@ -1,9 +1,5 @@
 (*関数を使用したリスト処理*)
 (*変数はメモリに作業スペースを作るイメージ*)
-(*test*)
-
-
-
 
 (*関数練習*)
 
@@ -31,7 +27,7 @@ let time_identify time =
                                       else "おやすみ"
  
 let test1 = time_identify 15 = "午後"
-let test2 = time_identify 9 = "午前"
+let test2 = time_identify 9 = ""
 
 
 
