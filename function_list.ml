@@ -27,7 +27,7 @@ let time_identify time =
                                       else "おやすみ"
  
 let test1 = time_identify 15 = "午後"
-let test2 = time_identify 9 = ""
+let test2 = time_identify 9 = "午前"
 
 
 
