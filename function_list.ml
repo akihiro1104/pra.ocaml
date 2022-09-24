@@ -30,6 +30,24 @@ let test1 = time_identify 15 = "午後"
 let test2 = time_identify 9 = "午前"
 
 
+(*パターンマッチと組*)
+(*複数のデータを扱うことが目的*)
+
+let add pair = match pair with
+    (a,b) -> a + b
+
+let test1 = add (9,8) = 17
+let test2 = add (10,10) = 20
+
+(*練習*)
+
+let find_number count = match count with
+    (a,b) ->  a + b * 8
+
+let test1 = find_number (5000,5000) = 45000
+let test2 = find_number (10,10) = 90
+
+
 
 
 
