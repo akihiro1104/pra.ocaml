@@ -56,9 +56,30 @@ let test2 = find_number (10,10) = 90
 
 
 
+(*以下のように、データ型を定める*)
+
+type gakusei_t = {
+    namae : string; (*名前*)
+    tensuu : int ;  (*点数*)
+    seiseki : string; (*成績*)
+}
+
+(*実際のレコードタイプの問題は以下のような処理が行われる*)
+
+let hyouka gakusei = match gakusei with
+    { namae = n; tensuu = t; seiseki = s} ->
+        if t >= 80 then { namae = n; tensuu = t; seiseki = "a"}
+                   else if t >= 70 then { namae = n; tensuu = t; seiseki = "b"}
+                                   else if t >= 60 then { namae = n; tensuu = t; seiseki = "c"}
+                                                    else { namae = n; tensuu = t; seiseki = "d"}
 
 
 
+let test1 = hyouka { namae = "asai"; tensuu = 90; seiseki = "" } = { namae = "asai"; tensuu = 90; seiseki = "a" }
+let test2 = hyouka { namae = "asai"; tensuu = 80; seiseki = "" } = { namae = "asai"; tensuu = 80; seiseki = "a" }
+let test3 = hyouka { namae = "asai"; tensuu = 75; seiseki = "" } = { namae = "asai"; tensuu = 75; seiseki = "b" }
+let test4 = hyouka { namae = "asai"; tensuu = 65; seiseki = "" } = { namae = "asai"; tensuu = 65; seiseki = "c" }
+let test1 = hyouka { namae = "asai"; tensuu = 55; seiseki = "" } = { namae = "asai"; tensuu = 55; seiseki = "d" }
 
 
 
