@@ -82,6 +82,15 @@ let test4 = hyouka { namae = "asai"; tensuu = 65; seiseki = "" } = { namae = "as
 let test1 = hyouka { namae = "asai"; tensuu = 55; seiseki = "" } = { namae = "asai"; tensuu = 55; seiseki = "d" }
 
 
+(*データ構造のリスト*)
+(*大量のデータを扱うときに優れているデータ構造*)
+(*リストの中身は、同じデータ型で統一しなけれならない*)
+(*パターンマッチを使用して、リストの操作が可能となっている。*)
 
-
+let practice_list data = match data with
+    [] -> "nothing"
+    | first :: rest -> 
+        if first > 50 then "ok"
+                      else "no"
     
+let test1 = practice_list [90;20]
