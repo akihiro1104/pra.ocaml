@@ -86,6 +86,7 @@ let test1 = hyouka { namae = "asai"; tensuu = 55; seiseki = "" } = { namae = "as
 (*大量のデータを扱うときに優れているデータ構造*)
 (*リストの中身は、同じデータ型で統一しなけれならない*)
 (*パターンマッチを使用して、リストの操作が可能となっている。*)
+(*リストの中のものを全て何かしらの計算などをしたければ、再帰関数を使用する*)
 
 let practice_list data = match data with
     [] -> "nothing"
@@ -93,4 +94,33 @@ let practice_list data = match data with
         if first > 50 then "ok"
                       else "no"
     
-let test1 = practice_list [90;20]
+let test1 = practice_list [90;20] = "ok"
+let test2 = practice_list [10;52] = "no"
+
+
+(*再帰関数について*)
+
+let rec contain_zero list = match list with
+    [] -> false
+    | first :: rest ->
+        if first = 0 then true
+                     else contain_zero rest
+
+let test1 = contain_zero [] = false
+let test2 = contain_zero [1] = false
+let test3 = contain_zero [0;9;8] = true
+let test4 = contain_zero [6;7;8;9;0] = true
+let test5 = contain_zero [5;6;0;7;8]
+
+
+(*リストを受け取ったら各要素の和を返す*)
+(*無理に条件分岐を使用せずに、再帰関数のRECが振り出しに戻る合図として認識する*)
+
+let rec sum list = match list with
+    [] -> 0
+    | first :: rest -> first + sum rest
+
+
+let test1 = sum [] = 0
+let test2 = sum [1;2] = 3
+let test3 = sum [5;6;7] = 18
