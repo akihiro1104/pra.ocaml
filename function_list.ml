@@ -166,5 +166,67 @@ let test5 = find_grade [{ namae = "asai"; tensuu = 90; seiseki = "a"}; { namae =
 (*再帰関数を使ったプログラミング*)
 
 
+(*再帰関数のネスト*)
+
+let rec add_to_each n list = match list with
+ [] -> []
+ | first :: rest ->
+    ( n :: first ) :: add_to_each n rest
+
+let test1 = add_to_each 1 [] = []
+let test2 = add_to_each 1 [[2]] = [[1;2]]
+let test2 = add_to_each 1 [[2];[2;3]] = [[1;2]; [1;2;3]]
 
 
+
+(*本命の関数の作成*)
+(*add_to_eachの補助関数を使用を以下のように使用する。*)
+
+let rec prefix list = match list with
+    [] -> []
+    | first :: rest -> [first] :: add_to_each first (prefix rest)
+
+
+let test1 = prefix [1;2;3;4;5;6] = [[1]; [1; 2]; [1; 2; 3]; [1; 2; 3; 4]; [1; 2; 3; 4; 5]; [1; 2; 3; 4; 5; 6]]
+
+
+(*練習*)
+
+let rec insert n list = match list with
+  [] -> [n]
+    | first :: rest -> if first > n then n :: list
+                                    else first :: insert n rest
+
+let test1 = insert 1 [] = [0]
+let test2 = insert 1 [2; 3] = [1; 2; 3]
+let test3 = insert 1 [2; 3] = [2; 3; 4]
+let test4 = insert 1 [2; 5] = [2; 4; 5]
+
+
+(*複数の整数リストを受け取ったら昇降順に並び替えて返す*)
+(*補助関数のなど複数の関数を使用する場合には、戻り値や各関数やなどでやりとりを行うデータ型を意識して作成する*)
+
+let rec insert_sort list = match list with
+    [] -> []
+    | first :: rest -> insert first (insert_sort rest) 
+
+
+
+let test1 = insert_sort [] = []
+let test00 = insert_sort [9;8;7] = [7;8;9]
+let test2 = insert_sort [9;8;7;6] = [6;7;8;9]
+let test3 = insert_sort [7;6;5;4] = [4;5;6;7]
+
+
+(*リストから最小の数字だけを整数型として戻す*)
+(*以下の関数にスコープ変数を施した*)
+
+let rec minimum list = match list with
+    [] -> max_int
+    | first :: rest -> let mini_list = minimum rest in
+        if first <= mini_list then first
+                              else mini_list
+
+let test1 = minimum [] = max_int
+let test2 = minimum [1;2;3;4;5] = 1
+let test3 = minimum [90;879;769;68;5;68;2] = 2
