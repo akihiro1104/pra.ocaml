@@ -124,3 +124,47 @@ let rec sum list = match list with
 let test1 = sum [] = 0
 let test2 = sum [1;2] = 3
 let test3 = sum [5;6;7] = 18
+
+(*再帰関数練習*)
+
+let rec length list = match list with
+    [] -> 0
+    | first :: rest -> length rest + 1
+
+let test1 = length [] = 0
+let test2 = length [1] = 1
+let test3 = length [1;2] = 2
+let test4 = length [1;2;3] = 3
+
+
+(*文字列を使用した再帰関数の問題練習*)
+
+let rec concat list = match list with
+    [] -> ""
+    | first :: rest -> first ^ concat rest
+
+let test1 = concat [] = ""
+let test2 = concat ["おはよう"] = "おはよう"
+let test3 = concat ["おはよう、"; "花子さん"] = "おはよう、花子さん"
+
+(*複数のレコードを一つのリストとして扱う。*)
+
+let rec find_grade list = match list with
+    [] -> 0
+    | { namae = n; tensuu = t; seiseki = s; } :: rest ->
+        if s = "a" then find_grade rest + 1
+                   else find_grade rest
+
+let test1 = find_grade [] = 0
+let test2 = find_grade [{ namae = "asai"; tensuu = 90; seiseki = "b"}] = 0
+let test3 = find_grade [{ namae = "asai"; tensuu = 90; seiseki = "c" }; { namae = "asai"; tensuu = 90; seiseki = "c"}] = 0
+let test4 = find_grade [{ namae = "asai"; tensuu = 90; seiseki = "a"}] = 1
+let test5 = find_grade [{ namae = "asai"; tensuu = 90; seiseki = "a"}; { namae = "asai"; tensuu = 90; seiseki = "a"}] = 2
+
+
+
+(*再帰関数を使ったプログラミング*)
+
+
+
+
