@@ -230,3 +230,36 @@ let rec minimum list = match list with
 let test1 = minimum [] = max_int
 let test2 = minimum [1;2;3;4;5] = 1
 let test3 = minimum [90;879;769;68;5;68;2] = 2
+
+
+(*二つのリストを受け取ったら、結合させて返す*)
+
+let rec append list1 list2 = match list1 with
+    [] -> list2
+    | first :: rest -> first :: append rest list2
+
+let test1 = append [] [] = []
+let test2 = append [1] [] = [1]
+let test3 = append [] [1] = [1]
+let test4 = append [1;2] [1] = [1;2;1]
+
+
+(*二つのリストを受け取った昇降順に変更して一つのリストとして返す*)
+(*未完成*)
+
+let rec merge list1 list2 = match (list1,list2) with
+    ([],[]) -> []
+    | ([],first2 :: rest2) -> list2
+    | (first1 :: rest1, []) -> list1
+    | (first1 :: rest1, first2 :: rest2) -> 
+        if first1 < first2 then first1 :: merge rest1 list2
+                           else first2 :: merge list1 rest2
+
+let test1 = merge [] [] = []
+let test2 = merge [4;3] [] = [4;3]
+let test3 = merge [] [4;3] = [4;3]
+let test4 = merge [3;2] [5;4] = [2;3;4;5]
+
+
+
+
