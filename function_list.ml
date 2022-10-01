@@ -261,5 +261,38 @@ let test3 = merge [] [4;3] = [4;3]
 let test4 = merge [3;2] [5;4] = [2;3;4;5]
 
 
+(*自然数と再帰*)
+(*なぜ真のパートが１なのか不明*)
+
+let rec fac number =
+  if number = 0 then 1
+                else number * fac (number-1)
+
+let test1 = fac 2 = 2
+let test2 = fac 3 = 6
+let test3 = fac 4 = 24
+
+(*冪乗を求める*)
+
+let rec power n1 n2 = 
+    if n2 = 0 then 1
+              else n1 * power n1 (n2-1)
+
+let test1 = power 3 2 = 9
+let test2 = power 3 3 = 27
+let test3 = power 3 4 = 81
+
+
+(*練習問題*)
+
+let rec sum_of_square n = 
+    if n = 0 then 0
+             else n * n + sum_of_square (n - 1) 
+
+let test1 = sum_of_square 3
+let test2 = sum_of_square 250000
+
+ 
+
 
 
