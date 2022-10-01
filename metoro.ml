@@ -387,4 +387,18 @@ let rec kyori_wo_hyouji name1 name2 list = match list with
 let test1 = kyori_wo_hyouji "営団成増" "和光市" global_ekikan_list = "営団成増駅と和光市駅の距離は2.1kmです。"
 let test2 = kyori_wo_hyouji "福島" "札幌" global_ekikan_list = "福島駅と札幌駅は、繋がっていません。"
 
+
 (*漢字の駅名、最短距離（実数）、駅名（漢字の文字列）のリストを作る*)
+
+type eki_t = { namae : string; saitan_kyori : float; tamae_list : string list;}
+
+
+(*ekimei_t型のリストを受け取ったらそのデータを使用してeki_t型にして返す*)
+
+let rec make_eki_list list = match list with
+
+
+[kanji : string; kana : string; romaji  : string; shozoku : string; ] = [ namae : kanji; saitan_kyori : infinity; tamae_list 
+
+
+
