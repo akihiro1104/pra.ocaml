@@ -390,15 +390,51 @@ let test2 = kyori_wo_hyouji "福島" "札幌" global_ekikan_list = "福島駅と
 
 (*漢字の駅名、最短距離（実数）、駅名（漢字の文字列）のリストを作る*)
 
-type eki_t = { namae : string; saitan_kyori : float; tamae_list : string list;}
+type eki_t = { namae : string; saitan_kyori : float; temae_list : string list;}
 
 
 (*ekimei_t型のリストを受け取ったらそのデータを使用してeki_t型にして返す*)
+(*リストの処理を今まで通り行って、その後に事前に作成したデータ型をベースにリストの構成の再編成を行う。*)
 
-let rec make_eki_list list = match list with
+let rec make_eki_list lst = match lst with
+  [] -> []
+  | {kanji = k} :: rest
+    -> {namae = k; saitan_kyori = infinity; temae_list = []} :: (make_eki_list rest)
+  
+let test1 = make_eki_list [] = []
+let test2 = make_eki_list global_ekimei_list
+
+(*ダイクストラのアルゴリズムステップ１*)
+(*# use"metoro.ml" ;;*)
+
+let eki_list = [
+  {namae = "表参道"; saitan_kyori = infinity; temae_list = []};
+  {namae = "乃木坂"; saitan_kyori = infinity; temae_list = []};
+  {namae = "赤坂"; saitan_kyori = infinity; temae_list = []}
+]
+
+let rec shokika lst shiten = match lst with
+  [] -> []
+  | { namae = n } as first :: rest ->
+    if n = shiten
+      then {namae = shiten; saitan_kyori = 0.; temae_list = [shiten]} :: rest
+      else first :: (shokika rest shiten)
 
 
-[kanji : string; kana : string; romaji  : string; shozoku : string; ] = [ namae : kanji; saitan_kyori : infinity; tamae_list 
+
+let test1 = shokika eki_list "表参道" = [
+  {namae = "表参道"; saitan_kyori = 0.; temae_list = ["表参道"]};
+  {namae = "乃木坂"; saitan_kyori = infinity; temae_list = []};
+  {namae = "赤坂"; saitan_kyori = infinity; temae_list = []}
+]
+let test2 = shokika eki_list "赤坂" = [
+  {namae = "表参道"; saitan_kyori = infinity; temae_list = []};
+  {namae = "乃木坂"; saitan_kyori = infinity; temae_list = []};
+  {namae = "赤坂"; saitan_kyori = 0.; temae_list = ["赤坂"]}
+]
+
+    
+
 
 
 
