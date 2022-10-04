@@ -433,6 +433,11 @@ let test2 = shokika eki_list "赤坂" = [
   {namae = "赤坂"; saitan_kyori = 0.; temae_list = ["赤坂"]}
 ]
 
+
+(*駅名重複処理、受け取ったリストをあいうえお順に整列し重複を取り除いた駅名リストを返す*)
+
+
+
     
 
 
