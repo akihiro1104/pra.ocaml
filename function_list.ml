@@ -292,7 +292,49 @@ let rec sum_of_square n =
 let test1 = sum_of_square 3
 let test2 = sum_of_square 250000
 
- 
+
+(*一般化と高階関数*)
+(*ex*)
+
+let rec count_a list = match list with
+    [] -> 0
+    | { namae = n; tensuu = t; seiseki = s} :: rest ->
+        if s = "a" then 1 + count_a rest
+                   else count_a rest  
+
+let rec count_a list = match list with
+    [] -> 0
+    | { namae = n; tensuu = t; seiseki = s} :: rest ->
+        if s = "b" then 1 + count_a rest
+                   else count_a rest  
 
 
+(*上記の二つの関数はほとんど同じなので、一般化が以下のようにできる*)
+
+let rec count list seiseki = match list with
+    [] -> 0
+    | { namae = n; tensuu = t; seiseki = s} :: rest ->
+        if s = seiseki then 1 + count rest seiseki
+                       else seiseki rest seiseki
+
+
+(*関数の一般化とmap*)
+(*事前に製作した関数を引数として関数に渡すことが可能であり、高階関数という*)
+
+let rec map_sqrt list = match list with
+    [] -> []
+    | first :: rest -> sqrt first :: map_sqrt rest
+
+
+let rec test_f function1 list = match list with
+    [] -> []
+    | first :: rest -> function1 rest :: test_f function1 rest
+
+
+let test1 = test_f map_sqrt [] = []
+let test2 = test_f map_sqrt [1.0;2.0] 
+
+
+(*上記のmap_sqrt関数を引数としてtest_fに渡して関数を始動させる*)
+(*データ型指定などを一切求めない、多相型と多相関数などがある*)
 
