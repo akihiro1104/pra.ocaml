@@ -16,11 +16,12 @@ let lst2 = [gakusei1; gakusei2]
 let lst3 = [gakusei3; gakusei1]
 
 let rec gakusei_max list = match list with
-    [] -> { namae = ""; tensuu = min_int; seiseki = ""}
-    | ({ namae = n; tensuu = t; seiseki = s} as first) :: rest ->
-        match gakusei_max rest with { namae = n_max; tensuu = t_max; seiseki = s_max} ->
-            if t < t_max then gakusei_max rest
-                         else first
+  [] -> { namae = ""; tensuu = min_int; seiseki = ""}
+    | ({ namae = n; tensuu = t; seiseki = s} as first) :: rest -> match gakusei_max rest with
+      { namae = n_2; tensuu = t_2; seiseki = s_2} ->
+        if t < t_2 then gakusei_max rest
+                   else first
+
 
 
 let test1 = gakusei_max lst1 = gakusei1
