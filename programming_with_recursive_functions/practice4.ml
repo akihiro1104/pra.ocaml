@@ -59,3 +59,24 @@ let test1 = ketsueki_shukei [] = (0, 0, 0, 0)
 let test2 = ketsueki_shukei lst1 = (1, 0, 0, 0)
 let test3 = ketsueki_shukei lst2 = (1, 1, 0, 0)
 let test4 = ketsueki_shukei lst3 = (0,2,0,1)
+
+
+(*成績が一番多いランクを吐き出す*)
+(*ライブラリ関数が使用されており、全体像が掴めない*)
+
+let saita_ketsueki lst = 
+    let (a, o, b, ab) = ketsueki_shukei lst in 
+    let saidai = max (max a o) (max b ab) in 
+    
+        if saidai = a then "A" 
+                      else if saidai = o then "O" 
+                                         else if saidai = b then "B" 
+                                                            else "AB" 
+ 
+(* テスト *) 
+let test1 = saita_ketsueki lst1 
+let test2 = saita_ketsueki lst2 
+let test3 = saita_ketsueki lst3 
+
+
+
