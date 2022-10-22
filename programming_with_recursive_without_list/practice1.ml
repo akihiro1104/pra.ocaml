@@ -19,4 +19,5 @@ let rec power m n =
 let test1 = power 0 0 = 0
 let test2 = power 1 2 = 1
 let test3 = power 2 2 = 4
+let test4 = power 3 3 = 27 
 
