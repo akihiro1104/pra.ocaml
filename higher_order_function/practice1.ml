@@ -7,5 +7,6 @@ let rec scholarship_count n1 n2 n3 =                   (*n1=支払い額*)
                    else n3 / n1                        (*n3=奨学金*)
 
 
-let test1 = scholarship_count 16000 240 3800000 
-let test2 = scholarship_count 17000 240 3800000
+let test1 = scholarship_count 16000 240 3800000 (*利息なしの元金のみ*)
+let test2 = scholarship_count 17000 240 3800000 (*+1000円の利息*)
+
