@@ -1,5 +1,6 @@
 (*10.7*)
 (*駅名、駅間リストからの情報の取得*)
+(*この単元は問題なし*)
 
 type ekimei_t = { 
   kanji   : string; (* 駅名 *) 
@@ -57,3 +58,4 @@ let rec get_ekikan_kyori kanji1 kanji2 list = match list with
 let test1_get = get_ekikan_kyori "テスト" "テスト" global_ekikan_list = "入力された駅は存在していません。"
 let test2_get = get_ekikan_kyori "代々木上原" "代々木公園" global_ekikan_list = "代々木上原から代々木公園まで1.kmです"
 let test2_get = get_ekikan_kyori "代々木公園" "代々木上原" global_ekikan_list = "代々木上原から代々木公園まで1.kmです"
+
