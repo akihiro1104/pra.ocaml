@@ -1,8 +1,11 @@
+
+
 type eki_t = {
   namae: string;
   saitan_kyori: float;
   temae_list: string list;
 }
+
 
 (*始点、リストをを受け取ったら最短距離を0、temae_listに始点をいれる*)
 (*偽の時に、元のデータ型を返す為以下のような構成になっている。*)
