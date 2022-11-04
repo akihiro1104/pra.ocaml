@@ -1,4 +1,4 @@
-stype eki_t = {
+type eki_t = {
   namae: string;
   saitan_kyori: float;
   temae_list: string list;
@@ -7,6 +7,8 @@ stype eki_t = {
 (*始点、リストをを受け取ったら最短距離を0、temae_listに始点をいれる*)
 (*偽の時に、元のデータ型を返す為以下のような構成になっている。*)
 
+
+(*リスト受け取り⇨パターン変数設定後リストの書き換え*)
 let rec shokika list shiten = match list with
     [] -> []
     | ({namae = n} as first) :: rest -> 
@@ -22,6 +24,10 @@ let eki_list = [
 let test1 = shokika eki_list "表参道" = [{namae = "表参道"; saitan_kyori = 0.; temae_list = ["表参道"]};
    {namae = "乃木坂"; saitan_kyori = infinity; temae_list = []};
    {namae = "赤坂"; saitan_kyori = infinity; temae_list = []}]
+
+let test2_test = shokika eki_list "赤坂" = [{namae = "表参道"; saitan_kyori = infinity ; temae_list = []};
+   {namae = "乃木坂"; saitan_kyori = infinity; temae_list = []};
+   {namae = "赤坂"; saitan_kyori = 0.; temae_list = ["赤坂"]}]
 
 
 
@@ -47,6 +53,7 @@ let ekimei_list = [
 
 
 (*seiretuからデータを受け取り、あいうえお順に整列後に重複駅を取り除いたeki_tを返す。*)
+(*二つのリストとオリジナルのリストを受け取る⇨条件にそってデータ型を書き換える。*)
 
 let rec part eki1 list = match list with
     [] -> [eki1]
