@@ -428,14 +428,13 @@ let lst = [eki1; eki2; eki3; eki4]
 
 (* 目的：直前に確定した駅 p と、未確定の駅のリスト v を受け取り、 *)
 (* 必要な更新処理を行った後の未確定の駅のリストを返す *)
+(* List.mapの構成が若干理解できていない*)
+
 (* koushin: eki_t -> eki_t list -> eki_t list *)
 
-let koushin p v = let f q = koushin1 p q in List.map f v 
-
-(*以下の関数が、list.mapの大まかな構成*)
-(*let rec my_map f list = match list with
-    [] -> []
-    | first :: rest -> (f first) :: (my_map f rest) *)
+let koushin p v = 
+  let f q = koushin1 p q in 
+  List.map f v 
 
 let test1 = koushin eki2 [] = [] 
 let test2 = koushin eki2 lst = 
