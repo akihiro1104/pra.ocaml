@@ -2,7 +2,7 @@
 (*再帰のより深い理解*)
 (*再帰関数において、欠落した情報などを追加の引数などを与えて補うことをアキュムレーターという*)
 
-tyoe distance_t = {
+type distance_t = {
     kyori : float; (*距離*)
     total : float; (*距離の合計*)
 }
@@ -17,11 +17,18 @@ let test3 = [{ kyori = 0.3; total = 0.3 };{ kyori = 1.3; total = 1.6 };{ kyori =
 
 let rec hojo list tota10 = match list with
     [] -> []
-    | { kyori = k; total = t } : rest ->
-        { kyori = k; total = . k + tota10} :: hojo rest (. k + tota10)
+    | { kyori = k; total = t } :: rest ->
+        { kyori = k; total =  k +. tota10} :: hojo rest ( k +. tota10)
+
+let total_distance list = 
 
 let rec total_distance hojo1 list tota10 = match list with
     [] -> []
-    | [ kyori = k; total = t ] :: rest -> 
-        { kyori = k; total = . k + tota10} :: hojo rest (. k + tota10)
+    | { kyori = k; total = t } :: rest -> 
+        { kyori = k; total =  k +. tota10} :: hojo rest ( tota10 +. k )
+        
 in hojo list 0.0
+
+let test1 = []
+let test2 = [{ kyori = 0.3; total = 0.3 };]
+let test3 = total_distance [{ kyori = 0.3; total = 0.3 };{ kyori = 1.3; total = 1.6 };{ kyori = 0.3; total = 1.9 };{ kyori = 1.0; total = 2.9 };]
