@@ -433,7 +433,7 @@ let lst = [eki1; eki2; eki3; eki4]
 (* koushin: eki_t -> eki_t list -> eki_t list *)
 
 let koushin p v = 
-  let f q = koushin1 p q in 
+  let f q  = koushin1 p q in  (*qにあたるものは文字列はなんでもいい*)
   List.map f v 
 
 let test1 = koushin eki2 [] = [] 
