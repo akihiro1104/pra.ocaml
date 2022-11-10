@@ -40,6 +40,18 @@ let lst2 = [person1; person2]
 let lst3 = [person2; person2; person3]
 
 
+(*一番重い体重のレコードを返す*)
+(*返したいデータ型や形を明確にイメージする必要がある。*)
+
+let rec person_info list = match list with
+  [] -> {name : string ="";  shincho = 0.0; taiju = 0.0; tsuki=1; hi = 1; ketsueki = ""; }
+  | ({taiju=t1} as first) :: rest1 -> match person_info rest1 with {taiju=t2} ->
+   if t1 < t2 then person_info rest1
+              else first
+
+let test1_person = person_info lst3 
+
+
 
 (* 目的：受け取った person_t list のなかに各血液型の人が何人いるかを組みにして返す *)
 (* ketsueki_shukei: person_t list -> int * int * int * int *)
@@ -62,12 +74,11 @@ let test4 = ketsueki_shukei lst3 = (0,2,0,1)
 
 
 (*成績が一番多いランクを吐き出す*)
-(*ライブラリ関数が使用されており、全体像が掴めない*)
+(*関数に値を二つずつ渡して、最終的に一つの関数に値を渡してスコープ変数の確定を行う*)
 
 let saita_ketsueki lst = 
     let (a, o, b, ab) = ketsueki_shukei lst in 
     let saidai = max (max a o) (max b ab) in 
-    
         if saidai = a then "A" 
                       else if saidai = o then "O" 
                                          else if saidai = b then "B" 
