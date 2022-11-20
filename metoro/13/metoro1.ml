@@ -1,3 +1,9 @@
+(*基本的なアルゴリズム構成はここで終了*)
+(*16章以降は大規模プログラミングよりの技術になる*)
+(*基本的なプログラミング構成などに関しては16章より前になる。*)
+
+
+
 type eki_t = {
   namae: string;
   saitan_kyori: float;
@@ -414,6 +420,8 @@ let lst = [eki1; eki2; eki3; eki4]
 
 (* 目的：直前に確定した駅 p と、未確定の駅のリスト v を受け取り、 *)
 (* 必要な更新処理を行った後の未確定の駅のリストを返す *)
+(* 以下の関数が理解できていない*)
+(* そもそもMAP.LIST関数(ライブラリ関数)の引数構成と関数そのものの構成が理解できていない。*)
 
 let koushin p v = let f q = koushin1 p q in List.map f v
 
@@ -425,6 +433,8 @@ let test2 = koushin eki2 lst =
 
 
 (*15*)
+(*スコープ変数のパートが理解できていない。*)
+(*スコープ変数の部分なしで作れる？*)
 
 let rec minimum lst = match lst with
   [] -> {namae = ""; saitan_kyori = infinity; temae_list = []}
@@ -435,7 +445,6 @@ let rec minimum lst = match lst with
 (* 目的：eki_t list を受け取り、「最短距離最小の駅」と「それ以外の駅のリスト」の組を返す *)
 (*以下の関数が理解できていない。*)
 
-(* saitan_wo_bunri: eki_t list -> eki_t * eki_t list *)
 let saitan_wo_bunri lst = let saisyou = minimum lst in
   (saisyou, (List.filter (fun item -> not (item = saisyou)) lst))
 
@@ -454,7 +463,6 @@ let test2 = saitan_wo_bunri lst = (eki3, [eki1; eki2; eki4])
 
 
 (*16アキュムレーター*)
-
 (*１６−１、koushinに駅間リストを加える*)
 
 let rec get_ekikan_kyori eki1 eki2 lst = match lst with
@@ -464,8 +472,10 @@ let rec get_ekikan_kyori eki1 eki2 lst = match lst with
       then ky
       else get_ekikan_kyori eki1 eki2 rest
 
+
 (* 目的：未確定の駅のリスト v を必要に応じて更新したリストを返す *) 
-(* koushin : eki_t -> eki_t list -> ekikan_t list -> eki_t list *) 
+(* list以降の引数構成が理解できていない。*) 
+
 let koushin p v ekikan_list = 
   List.map (fun q -> match (p, q) with 
 	     ({namae = pn; saitan_kyori = ps; temae_list = pt}, 
@@ -497,7 +507,8 @@ let test2 = koushin eki2 lst global_ekikan_list =
 
 
 (* 目的：eki_t list を受け取り、「最短距離最小の駅」と「それ以外の駅のリスト」の組を返す *)
-(* saitan_wo_bunri: eki_t list -> eki_t * eki_t list *)
+(* 以下の関数構成が理解できていない。*)
+
 let saitan_wo_bunri eki_list = match eki_list with 
     [] -> ({namae = ""; saitan_kyori = infinity; temae_list = []}, []) 
   | first :: rest -> 
@@ -510,6 +521,7 @@ let saitan_wo_bunri eki_list = match eki_list with
 		      rest 
 		      (first, []) 
 
+
 (* 目的：漢字の駅名をふたつと ekikan_t list を受け取り、駅間の距離を返す *)
 (* get_ekikan_kyori: string -> string -> ekikan_t list -> float *)
 let rec get_ekikan_kyori eki1 eki2 lst = match lst with
@@ -519,8 +531,10 @@ let rec get_ekikan_kyori eki1 eki2 lst = match lst with
       then ky
       else get_ekikan_kyori eki1 eki2 rest
 
+
 (* 目的：未確定の駅のリスト v を必要に応じて更新したリストを返す *) 
-(* koushin : eki_t -> eki_t list -> ekikan_t list -> eki_t list *) 
+(* 関数構成が理解できていない。*)
+
 let koushin p v ekikan_list = match p with 
   {namae = pn; saitan_kyori = ps; temae_list = pt} -> 
     List.map (fun q -> match q with 
@@ -534,8 +548,10 @@ let koushin p v ekikan_list = match p with
 		 else q) 
 	     v 
  
+
 (* 目的：未確定駅のリストと駅間リストから、各駅への最短路を求める *) 
-(* dijkstra_main : eki_t list -> ekikan_t list -> eki_t list *) 
+(* この辺から関数が複雑化する。 *) 
+
 let rec dijkstra_main eki_list ekikan_list = match eki_list with 
     [] -> [] 
   | first :: rest -> 
@@ -592,12 +608,13 @@ let rec find shuten eki_list = match eki_list with
       if n = shuten then first else find shuten rest 
  
 (* 目的：始点と終点を受け取ったら、最短路を求め、終点のレコードを返す *) 
-(* dijkstra : string -> string -> eki_t *) 
+(* この関数に適切な引数を与えることで駅間の最短距離を求めることができる。*)
+
 let dijkstra romaji_kiten romaji_shuten = 
-  let kiten = romaji_to_kanji romaji_kiten global_ekimei_list in 
-  let shuten = romaji_to_kanji romaji_shuten global_ekimei_list in 
-  let eki_list = make_initial_eki_list global_ekimei_list kiten in 
-  let eki_list2 = dijkstra_main eki_list global_ekikan_list in 
+    let kiten = romaji_to_kanji romaji_kiten global_ekimei_list in 
+    let shuten = romaji_to_kanji romaji_shuten global_ekimei_list in 
+    let eki_list = make_initial_eki_list global_ekimei_list kiten in 
+    let eki_list2 = dijkstra_main eki_list global_ekikan_list in 
   find shuten eki_list2 
  
 (* テスト *) 
