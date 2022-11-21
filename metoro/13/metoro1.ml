@@ -373,16 +373,6 @@ let rec hojo_koushin list1 list2 list3 = match list3 with
                                                                    else hojo_koushin list1 list2 rest
 
 
-let test1 = hojo_koushin "東京" "表参道" global_ekikan_list = infinity
-let test2 = hojo_koushin "渋谷" "表参道" global_ekikan_list = 1.3
-let test3 = hojo_koushin "表参道" "外苑前" global_ekikan_list = 0.7
-
-
-(*テスト用のリスト*)
-let eki1 = {namae="池袋"; saitan_kyori = infinity; temae_list = []} 
-let eki2 = {namae="新大塚"; saitan_kyori = 1.2; temae_list = ["新大塚"; "茗荷谷"]} 
-let eki3 = {namae="茗荷谷"; saitan_kyori = 0.; temae_list = ["茗荷谷"]} 
-let eki4 = {namae="後楽園"; saitan_kyori = infinity; temae_list = []} 
 
 
 (*直前に確定している駅と未確定の駅を受け取ったら、繋がってたら最短距離と手前リストの更新、違ったら未確定の駅を返す*)
@@ -396,25 +386,7 @@ let koushin1 p q = match (p,q) with
                             else if s1 +. kyori < s2 then {namae = n2; saitan_kyori = s1 +. kyori ; temae_list = n2 :: te1} 
                                                      else q
 
-(*テストコード*)
-let test5 = koushin1 eki3 eki1 = eki1 
-let test6 = koushin1 eki3 eki2 = eki2 
-let test7 = koushin1 eki3 eki3 = eki3 
-let test8 = koushin1 eki3 eki4 = 
-	{namae="後楽園"; saitan_kyori = 1.8; temae_list = ["後楽園"; "茗荷谷"]} 
-let test9 = koushin1 eki2 eki1 = 
-	{namae="池袋"; saitan_kyori = 3.0; temae_list = ["池袋"; "新大塚"; "茗荷谷"]}
-let test10 = koushin1 eki2 eki2 = eki2 
-let test11 = koushin1 eki2 eki3 = eki3  
-let test12 = koushin1 eki2 eki4 = eki4 
 
-
-
-let eki1 = {namae="池袋"; saitan_kyori = infinity; temae_list = []} 
-let eki2 = {namae="新大塚"; saitan_kyori = 1.2; temae_list = ["新大塚"; "茗荷谷"]} 
-let eki3 = {namae="茗荷谷"; saitan_kyori = 0.; temae_list = ["茗荷谷"]} 
-let eki4 = {namae="後楽園"; saitan_kyori = infinity; temae_list = []} 
- 
 (* 駅リストの例 *) 
 let lst = [eki1; eki2; eki3; eki4] 
 
@@ -424,11 +396,6 @@ let lst = [eki1; eki2; eki3; eki4]
 (* そもそもMAP.LIST関数(ライブラリ関数)の引数構成と関数そのものの構成が理解できていない。*)
 
 let koushin p v = let f q = koushin1 p q in List.map f v
-
-let test1 = koushin eki2 [] = [] 
-let test2 = koushin eki2 lst = 
- [{namae="池袋"; saitan_kyori = 3.0; temae_list = ["池袋"; "新大塚"; "茗荷谷"]}; 
-  eki2; eki3; eki4] 
 
 
 
@@ -442,24 +409,14 @@ let rec minimum lst = match lst with
     let ({saitan_kyori = rest_result_saitan} as rest_result) = minimum rest
       in if first_saitan < rest_result_saitan then first else rest_result
 
+  
+
 (* 目的：eki_t list を受け取り、「最短距離最小の駅」と「それ以外の駅のリスト」の組を返す *)
 (*以下の関数が理解できていない。*)
 
 let saitan_wo_bunri lst = let saisyou = minimum lst in
   (saisyou, (List.filter (fun item -> not (item = saisyou)) lst))
 
-(* 駅の例 *) 
-let eki1 = {namae="池袋"; saitan_kyori = infinity; temae_list = []} 
-let eki2 = {namae="新大塚"; saitan_kyori = 1.2; temae_list = ["新大塚"; "茗荷谷"]} 
-let eki3 = {namae="茗荷谷"; saitan_kyori = 0.; temae_list = ["茗荷谷"]} 
-let eki4 = {namae="後楽園"; saitan_kyori = infinity; temae_list = []} 
- 
-(* 駅リストの例 *) 
-let lst = [eki1; eki2; eki3; eki4] 
- 
-(* テスト *) 
-let test1 = minimum lst = eki3
-let test2 = saitan_wo_bunri lst = (eki3, [eki1; eki2; eki4]) 
 
 
 (*16アキュムレーター*)
@@ -488,22 +445,6 @@ let koushin p v ekikan_list =
 				  temae_list = qn :: pt} 
 		else q) 
 	   v 
-
-(* 駅の例 *) 
-let eki1 = {namae="池袋"; saitan_kyori = infinity; temae_list = []} 
-let eki2 = {namae="新大塚"; saitan_kyori = 1.2; temae_list = ["新大塚"; "茗荷谷"]} 
-let eki3 = {namae="茗荷谷"; saitan_kyori = 0.; temae_list = ["茗荷谷"]} 
-let eki4 = {namae="後楽園"; saitan_kyori = infinity; temae_list = []} 
- 
-(* 駅リストの例 *) 
-let lst = [eki1; eki2; eki3; eki4] 
- 
-(* テスト *) 
-let test1 = koushin eki2 [] global_ekikan_list = [] 
-let test2 = koushin eki2 lst global_ekikan_list = 
- [{namae="池袋"; saitan_kyori = 3.0; temae_list = ["池袋"; "新大塚"; "茗荷谷"]}; 
-  eki2; eki3; eki4] 
-
 
 
 (* 目的：eki_t list を受け取り、「最短距離最小の駅」と「それ以外の駅のリスト」の組を返す *)
@@ -611,10 +552,10 @@ let rec find shuten eki_list = match eki_list with
 (* この関数に適切な引数を与えることで駅間の最短距離を求めることができる。*)
 
 let dijkstra romaji_kiten romaji_shuten = 
-    let kiten = romaji_to_kanji romaji_kiten global_ekimei_list in 
-    let shuten = romaji_to_kanji romaji_shuten global_ekimei_list in 
-    let eki_list = make_initial_eki_list global_ekimei_list kiten in 
-    let eki_list2 = dijkstra_main eki_list global_ekikan_list in 
+    let kiten = romaji_to_kanji romaji_kiten global_ekimei_list in   (*起点の漢字を返す*)
+    let shuten = romaji_to_kanji romaji_shuten global_ekimei_list in (*終点の漢字を返す*)
+    let eki_list = make_initial_eki_list global_ekimei_list kiten in (*文字列の起点を受け取り後、起点を含んだデータ型を返す*)
+    let eki_list2 = dijkstra_main eki_list global_ekikan_list in     (*確定済みと未確定の駅の最短距離を求めてリストを返す*)
   find shuten eki_list2 
  
 (* テスト *) 
