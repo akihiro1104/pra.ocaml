@@ -513,7 +513,8 @@ let test3 = romaji_to_kanji "yushima" global_ekimei_list = "湯島"
 let rec find shuten eki_list = match eki_list with 
     [] -> {namae = ""; saitan_kyori = infinity; temae_list = []} 
   | ({namae = n; saitan_kyori = s; temae_list = t} as first) :: rest -> 
-      if n = shuten then first else find shuten rest 
+      if n = shuten then first 
+                    else find shuten rest 
  
 (* 目的：始点と終点を受け取ったら、最短路を求め、終点のレコードを返す *) 
 (* この関数に適切な引数を与えることで駅間の最短距離を求めることができる。*)
