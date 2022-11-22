@@ -1,6 +1,7 @@
 (*基本的なアルゴリズム構成はここで終了*)
 (*16章以降は大規模プログラミングよりの技術になる*)
 (*基本的なプログラミング構成などに関しては16章より前になる。*)
+(*最短距離を計測するアルゴリズムに関しては以下の関数で問題なくかつ適切に稼働することを確認済み*)
 
 
 
@@ -364,41 +365,6 @@ let global_ekikan_list = [
 ] 
 
 
-
-(*繋がっていたら距離を返す*)
-let rec hojo_koushin list1 list2 list3 = match list3 with
-    [] -> infinity
-    | {kiten = ki; shuten = sh; kyori = ky} :: rest ->
-     if (ki = list1 && sh = list2 ) || (ki = list2 && sh = list1 ) then ky 
-                                                                   else hojo_koushin list1 list2 rest
-
-
-
-
-(*直前に確定している駅と未確定の駅を受け取ったら、繋がってたら最短距離と手前リストの更新、違ったら未確定の駅を返す*)
-(**)
-
-let koushin1 p q = match (p,q) with
-    | ({ namae = n1; saitan_kyori = s1; temae_list = te1 } ,
-    { namae = n2; saitan_kyori = s2; temae_list = te2 }) ->
-        let kyori = hojo_koushin n1 n2 global_ekikan_list in
-        if kyori = infinity then q
-                            else if s1 +. kyori < s2 then {namae = n2; saitan_kyori = s1 +. kyori ; temae_list = n2 :: te1} 
-                                                     else q
-
-
-(* 駅リストの例 *) 
-let lst = [eki1; eki2; eki3; eki4] 
-
-(* 目的：直前に確定した駅 p と、未確定の駅のリスト v を受け取り、 *)
-(* 必要な更新処理を行った後の未確定の駅のリストを返す *)
-(* 以下の関数が理解できていない*)
-(* そもそもMAP.LIST関数(ライブラリ関数)の引数構成と関数そのものの構成が理解できていない。*)
-
-let koushin p v = let f q = koushin1 p q in List.map f v
-
-
-
 (*15*)
 (*スコープ変数のパートが理解できていない。*)
 (*スコープ変数の部分なしで作れる？*)
@@ -412,7 +378,7 @@ let rec minimum lst = match lst with
   
 
 (* 目的：eki_t list を受け取り、「最短距離最小の駅」と「それ以外の駅のリスト」の組を返す *)
-(*以下の関数が理解できていない。*)
+(*ここの構成が理解不能*)
 
 let saitan_wo_bunri lst = let saisyou = minimum lst in
   (saisyou, (List.filter (fun item -> not (item = saisyou)) lst))
@@ -431,6 +397,7 @@ let rec get_ekikan_kyori eki1 eki2 lst = match lst with
 
 
 (* 目的：未確定の駅のリスト v を必要に応じて更新したリストを返す *) 
+(** リスト処理を行うときには、基本的には再帰構成にする必要はない？)
 (* list以降の引数構成が理解できていない。*) 
 
 let koushin p v ekikan_list = 
@@ -571,4 +538,9 @@ let test5 = dijkstra "myogadani" "meguro" =
      ["目黒"; "白金台"; "白金高輪"; "麻布十番"; "六本木一丁目"; "溜池山王"; 
       "永田町"; "麹町"; "市ヶ谷"; "飯田橋"; "後楽園"; "茗荷谷"]} 
 
-let test6 = dijkstra "higashiginza" "takadanobaba"
+let test6 = dijkstra "higashiginza" "takadanobaba" = {namae = "高田馬場"; saitan_kyori = 8.9;
+   temae_list =
+    ["高田馬場"; "早稲田"; "神楽坂"; "飯田橋"; "九段下";
+     "竹橋"; "大手町"; "東京"; "銀座"; "東銀座"]}
+
+let test7 = dijkstra "sapporo" "hiroshima" = {namae = ""; saitan_kyori = infinity; temae_list = []}
