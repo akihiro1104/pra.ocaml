@@ -372,17 +372,18 @@ let global_ekikan_list_mini = [
 (*①疑問点としては、関数一つに対してどのくらいの作業を割り振っていいのか？*)
 (*②どのように作業を分割し、ネストなどを行うのか？*)
 
-let rec sarch_list list = match list with
- [] -> []
- | ({ kyori = k; jikan = j} as first) :: rest -> if k >= 1.5 then sarch_list rest
-                                                                 else if j <= 2 then [first] :: sarch_list rest
-                                                                                else sarch_list rest
+
+let sarch_time list = 
+  List.filter (fun first -> match first with
+   | {jikan=j; kyori=k} :: rest -> j = 2 ) list
+
+
+    
 
 (*テストコード*)
 
-let test1 = sarch_list global_ekikan_list
+let test1 = sarch_time [global_ekikan_list]
 
-let test2 = sarch_list global_ekikan_list_mini 
 
 
 
