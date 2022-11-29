@@ -1,12 +1,30 @@
 (*一般化と高階関数*)
-(*一般化は似てる関数を複数作ることを避ける為に、複数の引数を意図的に設定する。↓*)
+(*練習用ファイル↓*)
+
+let rec sum_1 f list = match list with
+    [] -> []
+    | first :: rest -> f first :: sum_1 f rest
+
+(*名前のない関数*)
+(*上記の関数と合わせて名前のない関数で定めると以下のようになる*)
+(*関数構成は、fun＋引数*)
+
+(*関数なし定義*)
+(*名前のない関数は関数を定めず、引数の設定だけを行い*)
+
+(*let sum_main list = sum_1 (fun first -> first + 1) list *)
+
+(*全ての関数定義*)
+let rec f_1 first = first + 1 
+
+(*以下の関数のネスト部分は、名前のない関数を使用せずに定めている。*)
+let sum_main list = sum_1 f_1 list
+
+let test1_sum = sum_main [] = []
+let test2_sum = sum_main [1;2;3;4;5] = [2;3;4;5;6]
+let test3_sum = sum_main [5;6;7;8;9] = [6;7;8;9;10]  
 
 
-let rec scholarship_count n1 n2 n3 =                   (*n1=支払い額*)
-    if n1 > 16000 then (n1 - 16000) * n2              (*n2=支払い回数*)
-                   else n3 / n1                        (*n3=奨学金*)
 
-
-let test1 = scholarship_count 16000 240 3800000 (*利息なしの元金のみ*)
-let test2 = scholarship_count 17000 240 3800000 (*+1000円の利息*)
+(*上記のMAP関数使用して練習*)
 
