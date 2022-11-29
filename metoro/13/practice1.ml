@@ -372,6 +372,9 @@ let global_ekikan_list_mini = [
 (*①疑問点としては、関数一つに対してどのくらいの作業を割り振っていいのか？*)
 (*②どのように作業を分割し、ネストなどを行うのか？*)
 
+(*List.filter関数使用時の条件分岐の関数作成方法がまだ曖昧*)
+(*大まかな仕組みは理解できた*)
+
 
 let sarch_time list = 
   List.filter (fun first -> match first with
