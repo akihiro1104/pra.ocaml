@@ -18,7 +18,7 @@ let rec sum_1 f list = match list with
 let rec f_1 first = first + 1 
 
 (*以下の関数のネスト部分は、名前のない関数を使用せずに定めている。*)
-let sum_main list = sum_1 f_1 list
+let sum_main list = List.map f_1 list
 
 let test1_sum = sum_main [] = []
 let test2_sum = sum_main [1;2;3;4;5] = [2;3;4;5;6]
@@ -26,5 +26,20 @@ let test3_sum = sum_main [5;6;7;8;9] = [6;7;8;9;10]
 
 
 
-(*上記のMAP関数使用して練習*)
+(*fold_right練習*)
+(*リストの中をまとめ上げる時には、無理に上記の関数を使用する必要はないかな*)
+
+let rec sum list = match list with
+    [] -> 0
+    | first :: rest -> first + sum rest
+
+(*テストコード*)
+let test1_sum = sum [1;2;3;4;5] = 15
+let test2_sum = sum [] = 0
+
+
+
+
+
+
 
