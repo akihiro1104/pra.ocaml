@@ -375,13 +375,13 @@ let global_ekikan_list_mini = [
 (*List.filter関数使用時の条件分岐の関数作成方法がまだ曖昧*)
 (*大まかな仕組みは理解できた*)
 
+(*具体的に何を行いたいのかを意識する必要がある。*)
+
+
 
 let sarch_time list = 
   List.filter (fun first -> match first with
    | {jikan=j; kyori=k} :: rest -> j = 2 ) list
-
-
-    
 
 (*テストコード*)
 
