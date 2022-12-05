@@ -1,6 +1,8 @@
 (*再帰的なデータ構造*)
 (*バリアント型*)
-(*上記のデータ型は、データが一極化している時などの使用が妥当？*)
+
+(*これ以前の基本が腑に落ちていないので軽く流す*)
+(*おそらく大量のデータが存在して、一定の規則性に基づいて整列されたデータから特定のデータを探索するための有効手段として使用される？*)
 
 
 (*データ型である"木"*)
@@ -45,18 +47,30 @@ let test7 = sum_tree tree7 = 58
 
 let tree1 = Empty
 let tree2 = Leaf (3)
-let tree3 = Leaf (2)
-let tree3 = Node (tree2, 4, tree3)
+let tree3 = Node (Leaf (1), 2, Leaf (3))
+let tree4 = Node (Empty, 7, Leaf (9))
+let tree5 = Node (tree3, 6, tree4)
 
 
 
 (*二分探索木*)(*二分探索の使用メリット、使用場面が想像できていない。*)
 (*左側が小さい、右側が大きい値が格納されている規則性がある。(親要素をベースとして考える)*)
 
-let rec search data = match data with
-    empty -> false 
+let rec search tree data = match tree with
+    Empty -> false
     | Leaf (n) -> data = n
-    | Node (left,n,right) -> if data < n then true 
-                                         else if data < n then search left data 
-                                         else else search right data
+    | Node (t1, n, t2) ->
+        if data = n then true 
+                    else if data < n then search t1 data
+                                     else search t2 data 
+
+(*テストコード*)
+
+let test1 = search tree1 3 = false
+let test2 = search tree2 3 = true
+let test3 = search tree2 4 = false
+let test4 = search tree5 6 = true
+let test5 = search tree5 2 = true
+let test6 = search tree5 1 = true
+let test7 = search tree5 4 = false
 
