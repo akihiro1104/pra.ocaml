@@ -395,9 +395,8 @@ let test3 = get_ekikan_kyori "千川" "要町" global_ekikan_list = 1.0
 
 
 
-
-
 (*---------------------------------------------------------------------*)
+
 
 
 (*12,1-4*)
@@ -427,11 +426,11 @@ let ekimei_list3 = [ekimei1; ekimei2; ekimei3]
 
 (*テストコード*)
 let test1 = make_eki_list [] = []
-let test2 = make_eki_list ekimei_list1 = [
+let test2 = make_eki_list ekimei_list1  = [
   {namae = ekimei1.kanji; saitan_kyori = infinity; temae_list = []}
-]
+] 
 
-(*上記の変換した駅情報を引数として渡し、距離を０、temae_listを始点の駅名のみからなるリスト*)
+(*eki_t型とshitenを引数として受け取る*)
 
 let rec shokika list shiten = match list with
   [] -> []
@@ -479,6 +478,7 @@ let ekimei_list = [
  
 (* 目的：昇順に並んでいる lst の正しい位置に ekimei を挿入する *) 
 (*ここのパートはステップ１に当たる。*)
+(*この関数は必要なし？*)
 
 let rec ekimei_insert lst ekimei0 = match lst with 
     [] -> [ekimei0] 
@@ -511,6 +511,7 @@ let test2 = ekimei_insert [
 
 (* 目的：ekimei list をひらがなの順に整列しながら駅の重複を取り除く *) 
 (* この関数にデータを渡して、ソートをする。*)
+(* ソートするときはソートする関数とソート関数に引数として渡す目的を持った関数の２構成がテンプレかもしれん*)
 
 let rec seiretsu ekimei_list = match ekimei_list with 
     [] -> [] 
@@ -576,12 +577,57 @@ let test10 = koushin1 eki2 eki2 = eki2
 let test11 = koushin1 eki2 eki3 = eki3
 let test12 = koushin1 eki2 eki4 = eki4 
 
+
 (*確定した駅と未確定の駅リストをうけたら必要な処理を行う*)
 (*MAP処理を行う*)
-(*ここまでの関数の構成と各手順の確認と理解*)
+(*pが確定、Vが確定？*)
 
-let koushin p v = let f q = koushin1 p q in List.map f v 
+
+let koushin p v = let f q  = koushin1 p q in List.map f v 
+
+(*テストコード*)
+let eki1 = {namae="池袋"; saitan_kyori = infinity; temae_list = []} 
+let eki2 = {namae="新大塚"; saitan_kyori = 1.2; temae_list = ["新大塚"; "茗荷谷"]} 
+let eki3 = {namae="茗荷谷"; saitan_kyori = 0.; temae_list = ["茗荷谷"]} 
+let eki4 = {namae="後楽園"; saitan_kyori = infinity; temae_list = []} 
+
+let lst = [eki1; eki2; eki3; eki4]
   
+let test1 = koushin eki2 [] = [] 
+let test2 = koushin eki2 lst  = 
+ [{namae="池袋"; saitan_kyori = 3.0; temae_list = ["池袋"; "新大塚"; "茗荷谷"]}; 
+  eki2; eki3; eki4] 
 
   
+(*----------------------------------------------------------------------------------------*)
 
+(*14*)
+(*今まで作った関数を全て、名前のない関数、居所定義、MAP化をする。*)
+
+(*----------------------------------------------------------------------------------------*)
+
+(*15*)
+(*最短距離の駅と最短距離以外のリストを返す*)
+(*MAP化が必要だがメイン関数は以下のようになるのでスキップ*)
+
+let rec minimum list = match list with
+  [] -> {namae = ""; saitan_kyori = infinity; temae_list = []}
+  | ( { saitan_kyori = saitan1 } as first ) :: rest -> match minimum rest with
+  ( { saitan_kyori = saitan2 } as second ) ->
+    if saitan1 < saitan2 then first
+                         else second
+
+
+(* 駅の例 *) 
+let eki1 = {namae="池袋"; saitan_kyori = infinity; temae_list = []} 
+let eki2 = {namae="新大塚"; saitan_kyori = 1.2; temae_list = ["新大塚"; "茗荷谷"]} 
+let eki3 = {namae="茗荷谷"; saitan_kyori = 0.; temae_list = ["茗荷谷"]} 
+let eki4 = {namae="後楽園"; saitan_kyori = infinity; temae_list = []} 
+ 
+(* 駅リストの例 *) 
+let lst = [eki1; eki2; eki3; eki4] 
+ 
+(* テスト *) 
+let test1 = minimum lst = eki3
+
+(*------------------------------------------------------------------------------*)
