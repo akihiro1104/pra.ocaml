@@ -3,6 +3,8 @@
 (*基本的なプログラミング構成などに関しては16章より前になる。*)
 (*最短距離を計測するアルゴリズムに関しては以下の関数で問題なくかつ適切に稼働することを確認済み*)
 
+(*実装したいものの、データ型を具体的にイメージする必要がある。*)
+
 
 type eki_t = {
   namae: string;
@@ -364,6 +366,7 @@ let global_ekikan_list = [
 ] 
 
 
+
 (*15*)
 (*スコープ変数のパートが理解できていない。*)
 (*スコープ変数の部分なしで作れる？*)
@@ -413,6 +416,7 @@ let koushin p v ekikan_list =
 
 
 (* 目的：eki_t list を受け取り、「最短距離最小の駅」と「それ以外の駅のリスト」の組を返す *)
+(* この関数の吐き出すデータ型が最終的な答えになる*)
 
 let saitan_wo_bunri eki_list = match eki_list with 
     [] -> ({namae = ""; saitan_kyori = infinity; temae_list = []}, []) 
